@@ -2,6 +2,6 @@
 
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxlista.listaMain">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxElokuva.ElokuvaController">
     <!-- TODO Add Nodes -->
 </BorderPane>

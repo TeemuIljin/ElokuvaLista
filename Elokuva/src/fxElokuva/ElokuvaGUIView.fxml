@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxElokuva.ElokuvaGUIController">
+   <center>
+      <DialogPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="480.0" BorderPane.alignment="CENTER">
+          <header>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="320.0">
+               <children>
+                  <Button layoutX="24.0" layoutY="119.0" mnemonicParsing="false" onAction="#Nappula" text="Harry potter 1" />
+                  <Label layoutX="24.0" layoutY="29.0" text="Elokuvalista">
+                     <font>
+                        <Font name="Arial" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="19.0" layoutY="89.0" text="Top-elokuvat">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="25.0" layoutY="151.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="90.0" text="James Bond" />
+                  <Button layoutX="121.0" layoutY="119.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="88.0" text="Scream 4" />
+                  <Button layoutX="121.0" layoutY="152.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="88.0" text="Terminator 2" />
+                  <Separator layoutX="21.0" layoutY="58.0" prefWidth="200.0" />
+                  <TextField layoutX="254.0" layoutY="61.0" />
+                  <Label layoutX="254.0" layoutY="32.0" text="Haku">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="341.0" layoutY="14.0" text="teemu iljin v3" />
+                  <Label layoutX="254.0" layoutY="111.0" text="Genre">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="218.0" layoutY="1.0" orientation="VERTICAL" prefHeight="200.0" />
+                  <Button layoutX="250.0" layoutY="141.0" mnemonicParsing="false" text="Kauhu" textFill="#9e2f29" />
+                  <Button layoutX="311.0" layoutY="141.0" mnemonicParsing="false" text="Fantasia" textFill="#338320" />
+                  <Button layoutX="381.0" layoutY="141.0" mnemonicParsing="false" text="Toiminta" textFill="#23b99d" />
+               </children>
+            </AnchorPane>
+          </header>
+          <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="320.0" />
+          </content>
+          <expandableContent>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="320.0" />
+          </expandableContent>
+      </DialogPane>
+   </center>
+</BorderPane>
