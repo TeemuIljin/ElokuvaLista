@@ -28,6 +28,13 @@ public class ElokuvaGUIController {
     @FXML private void lisäys() {
         Dialogs.showMessageDialog("Emme osaa lisätä tai poistaa elokuvia");
     }
+    @FXML private void Yötila() {
+        Dialogs.showMessageDialog("Tekee taustasta mustan/harmaan. Toimii toggle buttonin tavoin");
+    }
+    @FXML private void Hakeminen() {
+        ModalController.showModal(ElokuvaGUIController.class.getResource("Elokuvahaku.fxml"), "Jäsen", null, "");
+    }
+
 
 }
 

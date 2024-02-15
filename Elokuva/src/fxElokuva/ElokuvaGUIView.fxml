@@ -5,12 +5,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxElokuva.ElokuvaGUIController">
-   <center>
+   <bottom>
       <DialogPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="480.0" BorderPane.alignment="CENTER">
           <header>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="230.0" prefWidth="480.0">
@@ -28,7 +29,7 @@
                   </Label>
                   <Button layoutX="25.0" layoutY="151.0" mnemonicParsing="false" onAction="#Nappula" prefHeight="26.0" prefWidth="90.0" text="James Bond" />
                   <Button layoutX="121.0" layoutY="119.0" mnemonicParsing="false" onAction="#Nappula" prefHeight="26.0" prefWidth="88.0" text="Scream 4" />
-                  <Button layoutX="121.0" layoutY="152.0" mnemonicParsing="false" onAction="#Nappula" prefHeight="26.0" prefWidth="88.0" text="Terminator 2" />
+                  <Button layoutX="121.0" layoutY="152.0" mnemonicParsing="false" onAction="#Hakeminen" prefHeight="26.0" prefWidth="88.0" text="Terminator 2" />
                   <Separator layoutX="21.0" layoutY="58.0" prefWidth="200.0" />
                   <TextField layoutX="254.0" layoutY="61.0" />
                   <Label layoutX="254.0" layoutY="32.0" text="Haku">
@@ -55,11 +56,16 @@
                <children>
                   <Button layoutX="240.0" layoutY="3.0" mnemonicParsing="false" onAction="#Asetukset" text="Asetukset" />
                   <Button layoutX="328.0" layoutY="3.0" mnemonicParsing="false" onAction="#lisäys" text="Lisää tai poista jäseniä" />
+                  <ToggleButton layoutX="14.0" layoutY="3.0" mnemonicParsing="false" onAction="#Yötila" text="Yö-tila">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </ToggleButton>
                </children></AnchorPane>
           </content>
           <expandableContent>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="320.0" />
           </expandableContent>
       </DialogPane>
-   </center>
+   </bottom>
 </BorderPane>
