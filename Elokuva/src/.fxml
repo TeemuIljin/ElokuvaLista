@@ -3,5 +3,6 @@
 <?import javafx.scene.layout.BorderPane?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxElokuva.ElokuvaController">
-    <!-- TODO Add Nodes -->
+    <!-- TODO: Lisää solmut -->
+
 </BorderPane>

@@ -1,0 +1,14 @@
+package elokuva;
+
+
+/**
+ * Luokka elokuvan tarkastamiseen
+ * @author iljitesa
+ * @version 9.3.2024
+ *
+ */
+
+public class elokuvatiedot
+{
+
+}
