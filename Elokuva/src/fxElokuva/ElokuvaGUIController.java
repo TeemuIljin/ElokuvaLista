@@ -16,6 +16,11 @@ import javafx.application.Platform;
 //alertit yms
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import fxElokuva.Elokuva;
+import fxElokuva.ElokuvaMain;
+
+import javax.xml.namespace.QName;
+
 
 /**
  * @author teemuiljin
@@ -30,9 +35,11 @@ public class ElokuvaGUIController {
      * En ole vielä päättänyt miten teen yötilan
      * Väri vaihtuu valkoiseksi mustasta
      */
-    @FXML private void paivatila() {
+    @FXML
+    private void paivatila() {
 
     }
+
     /**
      * @author teemuiljin
      * Asetukset tehty valmiiksi alert ikkunan avulla eikä dialogpanejen avulla
@@ -49,13 +56,14 @@ public class ElokuvaGUIController {
         // Näytetään alertti-ikkuna ja odotetaan, että käyttäjä sulkee sen
         alert.showAndWait();
     }
+
     /**
      * @author teemuiljin
      * Lopettaa ohjelman (liitetty lopeta nappulaan)
      */
-    @FXML private void Lopeta() {
+    @FXML
+    private void Lopeta() {
         Platform.exit();
-
     }
 
     /**
@@ -75,47 +83,57 @@ public class ElokuvaGUIController {
         // Näytetään alertti-ikkuna ja odotetaan, että käyttäjä sulkee sen
         alert.showAndWait();
     }
+
     /**
      * @author teemuiljin
      * Kauhu genrelle oma luokka
      * näyttää vain kauhu genre-id elokuvat
+     * (liitetty kauhu-nappiin scenessä)
      */
-    @FXML private void Kauhu() {
+    @FXML
+    private void Kauhu() {
         Dialogs.showMessageDialog("Näyttää kauhuelokuvat");
     }
+
     /**
      * @author teemuiljin
      * Fantasia genrelle oma luokka
      * näyttää vain fantasia genre-id elokuvat
+     * (liitetty fantasia-nappiin scenessä)
      */
-    @FXML private void Fantasia() {
+    @FXML
+    private void Fantasia() {
         Dialogs.showMessageDialog("Näyttää fantasiaelokuvat");
     }
+
     /**
      * @author teemuiljin
      * Toiminta genrelle oma luokka
      * näyttää vaan toiminta genre-id elokuvat
+     * (liitetty toiminta-nappiin scenessä)
      */
-    @FXML private void Toiminta() {
+    @FXML
+    private void Toiminta() {
 
     }
+
     /**
      * @author teemuiljin
      * Elokuvien lisäys listaan
      * (listan muokkaus)
      */
-    @FXML private void lisays() {
+    @FXML
+    private void lisays() {
 
     }
+
     /**
      * @author teemuiljin
      * Elokuvien poisto listasta
      * (listan muokkaus)
      */
-    @FXML private void poisto() {
-
+    @FXML
+    private void poisto(){
     }
-
-
 }
 

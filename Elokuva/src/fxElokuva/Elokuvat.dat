@@ -3,6 +3,7 @@ package elokuva;
 
 /**
  * Luokka elokuvan tarkastamiseen
+ * Tyhjä toistaiseksi
  * @author iljitesa
  * @version 9.3.2024
  *

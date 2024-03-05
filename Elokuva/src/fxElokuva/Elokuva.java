@@ -1,39 +1,56 @@
 package fxElokuva;
 
-
 /**
  * @author teemuiljin
- * Elokuva luokka javassa josta tiedot viedään pääohjelmalle Mainiin
- * Vietäviä tietoja mainiin nimi,imdb, pituus ja genre-id
- * tietenkin package tuodaan myös tänne ylempänä
+ * Genre java luokka, johon laitetaan tietoja genreistä, joka haetaan mainiin
+ * TÄRKEÄNÄ GENRE-ID
  */
 
 public class Elokuva {
-    public String name;
-    public String imdb;
-    public String length;
-    public int genre_id;
+    private String nimi;
+    private String ohjaaja;
+    private int julkaisuvuosi;
+    private int genreId;
 
-    /**
-     * @author teemuiljin
-     * Pitää rakentaa lista nimistä ja genreistä elokuvat.dat ja genret.dat tiedostoihin
-     */
-
-
-    public void tulostaTiedot() {
-        System.out.println("Nimi: " + name);
-        System.out.println("IMDB: " + imdb);
-        System.out.println("Pituus: " + length);
-        System.out.println("Genre ID: " + genre_id);
+    // Konstruktori
+    public Elokuva(String nimi, String ohjaaja, int julkaisuvuosi, int genreId) {
+        this.nimi = nimi;
+        this.ohjaaja = ohjaaja;
+        this.julkaisuvuosi = julkaisuvuosi;
+        this.genreId = genreId;
     }
 
-    /**
-     * @author teemuiljin
-     * Lisään tänne luokan sisälle elokuvien ilmaisumetodit ajallaan
-     */
+    // Getterit ja setterit
+    public String getNimi() {
+        return nimi;
+    }
 
+    public void setNimi(String nimi) {
+        this.nimi = nimi;
+    }
 
+    public String getOhjaaja() {
+        return ohjaaja;
+    }
+
+    public void setOhjaaja(String ohjaaja) {
+        this.ohjaaja = ohjaaja;
+    }
+
+    public int getJulkaisuvuosi() {
+        return julkaisuvuosi;
+    }
+
+    public void setJulkaisuvuosi(int julkaisuvuosi) {
+        this.julkaisuvuosi = julkaisuvuosi;
+    }
+
+    public int getGenreId() {
+        return genreId;
+    }
+
+    public void setGenreId(int genreId) {
+        this.genreId = genreId;
+    }
 }
-
-
 
