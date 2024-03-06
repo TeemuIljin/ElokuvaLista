@@ -2,20 +2,20 @@ package fxElokuva;
 
 /**
  * @author teemuiljin
- * Genre java luokka, johon laitetaan tietoja genreistä, joka haetaan mainiin
+ * Genre java luokka, johon laitetaan tietoja genreistä, joka haetaan ELOKUVAT LUOKKAAT
  * TÄRKEÄNÄ GENRE-ID
  */
 
 public class Elokuva {
     private String nimi;
-    private String ohjaaja;
+    private String pituus;
     private int julkaisuvuosi;
     private int genreId;
 
     // Konstruktori
-    public Elokuva(String nimi, String ohjaaja, int julkaisuvuosi, int genreId) {
+    public Elokuva(String nimi, String pituus, int julkaisuvuosi, int genreId) {
         this.nimi = nimi;
-        this.ohjaaja = ohjaaja;
+        this.pituus = pituus;
         this.julkaisuvuosi = julkaisuvuosi;
         this.genreId = genreId;
     }
@@ -29,12 +29,12 @@ public class Elokuva {
         this.nimi = nimi;
     }
 
-    public String getOhjaaja() {
-        return ohjaaja;
+    public String getPituus() {
+        return pituus;
     }
 
-    public void setOhjaaja(String ohjaaja) {
-        this.ohjaaja = ohjaaja;
+    public void setPituus(String ohjaaja) {
+        this.pituus = ohjaaja;
     }
 
     public int getJulkaisuvuosi() {

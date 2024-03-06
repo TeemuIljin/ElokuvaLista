@@ -32,12 +32,6 @@ public class ElokuvaMain extends Application {
             primaryStage.setTitle("Elokuva");
             primaryStage.show();
 
-            //luodaan elokuva ja asetetaan sille tietoja
-
-
-            // käydään lista läpi (iteroidaan array)
-            // if lauseessa varmistetaan että on tilaa listassa ja että se on olemassa
-
 
         } catch (Exception e) {
             e.printStackTrace();

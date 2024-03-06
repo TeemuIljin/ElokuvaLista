@@ -19,7 +19,16 @@ import javafx.scene.control.Alert.AlertType;
 import fxElokuva.Elokuva;
 import fxElokuva.ElokuvaMain;
 
+import javax.swing.*;
 import javax.xml.namespace.QName;
+
+//lista
+import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
+import java.util.ArrayList;
+import javafx.scene.control.ToggleButton;
+
+
 
 
 /**
@@ -133,7 +142,17 @@ public class ElokuvaGUIController {
      * (listan muokkaus)
      */
     @FXML
-    private void poisto(){
+    private void poisto() {
     }
+
+    // Tämä metodi liitetään nappiin, jotta se tulostaa valitun elokuvan tiedot
+
+
+
+
+
+
 }
+
+
 
