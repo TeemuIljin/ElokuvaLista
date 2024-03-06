@@ -16,8 +16,6 @@ import javafx.application.Platform;
 //alertit yms
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import fxElokuva.Elokuva;
-import fxElokuva.ElokuvaMain;
 
 import javax.swing.*;
 import javax.xml.namespace.QName;
@@ -29,6 +27,12 @@ import java.util.ArrayList;
 import javafx.scene.control.ToggleButton;
 
 
+//ohjelmat
+import fxElokuva.Elokuvat;
+import fxElokuva.Elokuva;
+import fxElokuva.ElokuvaMain;
+
+
 
 
 /**
@@ -38,6 +42,15 @@ import javafx.scene.control.ToggleButton;
  * Kaikki ohjelmat kommentoitu
  */
 public class ElokuvaGUIController {
+
+    private Elokuvat elokuvalista = new Elokuvat();
+    private Genret genret = new Genret();
+
+    public void initialize() {
+
+    }
+
+
 
     /**
      * @author teemuiljin
@@ -87,7 +100,8 @@ public class ElokuvaGUIController {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Elokuvan tiedot");
         alert.setHeaderText(null);
-        alert.setContentText("Pituus: 2h 35min\nIMDB: 8.2\nGenre: kauhu");
+       // alert.setContentText("Pituus: 2h 35min\nIMDB: 8.2\nGenre: kauhu");
+        alert.setContentText(elokuvalista.getElokuvat()[1].tietoja());
 
         // Näytetään alertti-ikkuna ja odotetaan, että käyttäjä sulkee sen
         alert.showAndWait();

@@ -8,6 +8,10 @@ package fxElokuva;
 
 public class Elokuva {
 
+    /**
+     * @author teemuiljin
+     * Ensin alustetaan tiedot elokuville
+     */
 
     private int genre_id;
 
@@ -17,38 +21,37 @@ public class Elokuva {
 
     private String pituus;
 
-
+    /**
+     * @author teemuiljin
+     * luodaan myös tunnusnumero ja seuraavanro
+     */
 
     private static int seuraavaVapaa = 1;
     private int tunnusNro;
 
+    /**
+     * @author teemuiljin
+     * Jotta ei sekotu ja koodi toimii
+     */
     public Elokuva(){
-        rekisteroi();
+
     }
+
+    /**
+     * @author teemuiljin
+     * TÄRKEÄÄ!
+     * elokuva alustetaan käyttöä varten ja tehdään niistä uniikkeja kutsua varten
+     */
     public Elokuva(int genre_id, String nimi, String imdb, String pituus){
-        rekisteroi();
         this.nimi = nimi;
         this.genre_id = genre_id;
         this.imdb = imdb;
         this.pituus = pituus;
     }
 
-    public void rekisteroi() {
-        tunnusNro = seuraavaVapaa;
-        seuraavaVapaa++;
-    }
 
-    public void tulosta(java.io.PrintStream out) {
-        out.println("Elokuva numero: " + tunnusNro +" " + nimi + " " + imdb + " " + pituus);
-    }
-
-
-    public static void main(String args[]) {
-        Elokuva hp = new Elokuva(), bm2 = new Elokuva(1, "harri", "moi", "3h30m");
-        hp.tulosta(System.out);
-        hp.tulosta(System.out);
-        bm2.tulosta(System.out);
-        bm2.tulosta(System.out);
+    public String tietoja() {
+        return " Nimi: " + nimi + ", Genre: " + genre_id + ", Kesto: " + pituus;
     }
 }
 
