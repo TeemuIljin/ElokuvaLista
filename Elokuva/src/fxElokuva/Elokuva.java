@@ -7,50 +7,51 @@ package fxElokuva;
  */
 
 public class Elokuva {
+
+
+    private int genre_id;
+
     private String nimi;
+
+    private String imdb;
+
     private String pituus;
-    private int julkaisuvuosi;
-    private int genreId;
 
-    // Konstruktori
-    public Elokuva(String nimi, String pituus, int julkaisuvuosi, int genreId) {
+
+
+    private static int seuraavaVapaa = 1;
+    private int tunnusNro;
+
+    public Elokuva(){
+        rekisteroi();
+    }
+    public Elokuva(int genre_id, String nimi, String imdb, String pituus){
+        rekisteroi();
         this.nimi = nimi;
+        this.genre_id = genre_id;
+        this.imdb = imdb;
         this.pituus = pituus;
-        this.julkaisuvuosi = julkaisuvuosi;
-        this.genreId = genreId;
     }
 
-    // Getterit ja setterit
-    public String getNimi() {
-        return nimi;
+    public void rekisteroi() {
+        tunnusNro = seuraavaVapaa;
+        seuraavaVapaa++;
     }
 
-    public void setNimi(String nimi) {
-        this.nimi = nimi;
+    public void tulosta(java.io.PrintStream out) {
+        out.println("Elokuva numero: " + tunnusNro +" " + nimi + " " + imdb + " " + pituus);
     }
 
-    public String getPituus() {
-        return pituus;
-    }
 
-    public void setPituus(String ohjaaja) {
-        this.pituus = ohjaaja;
-    }
-
-    public int getJulkaisuvuosi() {
-        return julkaisuvuosi;
-    }
-
-    public void setJulkaisuvuosi(int julkaisuvuosi) {
-        this.julkaisuvuosi = julkaisuvuosi;
-    }
-
-    public int getGenreId() {
-        return genreId;
-    }
-
-    public void setGenreId(int genreId) {
-        this.genreId = genreId;
+    public static void main(String args[]) {
+        Elokuva hp = new Elokuva(), bm2 = new Elokuva(1, "harri", "moi", "3h30m");
+        hp.tulosta(System.out);
+        hp.tulosta(System.out);
+        bm2.tulosta(System.out);
+        bm2.tulosta(System.out);
     }
 }
+
+
+
 
