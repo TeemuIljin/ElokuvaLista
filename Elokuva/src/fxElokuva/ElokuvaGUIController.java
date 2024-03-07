@@ -6,6 +6,8 @@
  */
 //perusimportit
 package fxElokuva;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import fi.jyu.mit.fxgui.ComboBoxChooser;
 import fi.jyu.mit.fxgui.Dialogs;
@@ -43,10 +45,21 @@ import fxElokuva.ElokuvaMain;
  */
 public class ElokuvaGUIController {
 
+    @FXML private ListView elokuvatop;
+
     private Elokuvat elokuvalista = new Elokuvat();
     private Genret genret = new Genret();
+    private ObservableList<String> items = FXCollections.observableArrayList();
+
 
     public void initialize() {
+
+        // Aseta lista Listviewiin
+        elokuvatop.setItems(items);
+        items.add(elokuvalista.getElokuvat()[0].tietojaElokuva());
+        items.add(elokuvalista.getElokuvat()[1].tietojaElokuva());
+        items.add(elokuvalista.getElokuvat()[2].tietojaElokuva());
+        items.add(elokuvalista.getElokuvat()[3].tietojaElokuva());
 
     }
 
@@ -90,22 +103,73 @@ public class ElokuvaGUIController {
 
     /**
      * @author teemuiljin
-     * Vaihetta 4 varten nappulanpainallus
-     * kaikki napit tulostavat manuaalisesti tuloksen alert ikkunaan
-     * (liitetty kaikkiin top elokuviin scenen kautta)
+     * Automoitu toiminta vaihetta 5 varten
      */
-    @FXML
-    private void nappulanPainallus() {
+    //@FXML
+    //private void nappulanPainallus() {
         // Luodaan uusi alertti-ikkuna
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Elokuvan tiedot");
-        alert.setHeaderText(null);
+        //Alert alert = new Alert(AlertType.INFORMATION);
+       // alert.setTitle("Elokuvan tiedot");
+       // alert.setHeaderText(null);
        // alert.setContentText("Pituus: 2h 35min\nIMDB: 8.2\nGenre: kauhu");
-        alert.setContentText(elokuvalista.getElokuvat()[1].tietoja());
+       // alert.setContentText(elokuvalista.getElokuvat()[0].tietojaElokuva());
 
         // Näytetään alertti-ikkuna ja odotetaan, että käyttäjä sulkee sen
-        alert.showAndWait();
-    }
+        //alert.showAndWait();
+
+    /**
+     * @author teemuiljin
+     * Automoitu toiminta vaihetta 5 varten
+     * jokaiselle top elokuvalle oma nappi
+     * yhteensä 4 nappia 4 top elokuvaa
+     */
+    //@FXML
+    //private void nappulanPainallus2() {
+        // Luodaan uusi alertti-ikkuna
+        //Alert alert = new Alert(AlertType.INFORMATION);
+        //alert.setTitle("Elokuvan tiedot");
+        //alert.setHeaderText(null);
+        // alert.setContentText("Pituus: 2h 35min\nIMDB: 8.2\nGenre: kauhu");
+        //alert.setContentText(elokuvalista.getElokuvat()[1].tietojaElokuva());
+
+        // Näytetään alertti-ikkuna ja odotetaan, että käyttäjä sulkee sen
+        //alert.showAndWait();
+
+
+    /**
+     * @author teemuiljin
+     * Automoitu toiminta vaihetta 5 varten
+     * jokaiselle top elokuvalle oma nappi
+     * yhteensä 4 nappia 4 top elokuvaa
+     */
+    //@FXML
+    //private void nappulanPainallus3() {
+        // Luodaan uusi alertti-ikkuna
+        //Alert alert = new Alert(AlertType.INFORMATION);
+        //alert.setTitle("Elokuvan tiedot");
+        //alert.setHeaderText(null);
+        // alert.setContentText("Pituus: 2h 35min\nIMDB: 8.2\nGenre: kauhu");
+        //alert.setContentText(elokuvalista.getElokuvat()[2].tietojaElokuva());
+
+        // Näytetään alertti-ikkuna ja odotetaan, että käyttäjä sulkee sen
+        //alert.showAndWait();
+
+    /**
+     * @author teemuiljin
+     * Automoitu toiminta vaihetta 5 varten
+     * jokaiselle top elokuvalle oma nappi
+     * yhteensä 4 nappia 4 top elokuvaa
+     */
+    //@FXML
+    //private void nappulanPainallus4() {
+        // Luodaan uusi alertti-ikkuna
+        //Alert alert = new Alert(AlertType.INFORMATION);
+        //alert.setTitle("Elokuvan tiedot");
+        //alert.setHeaderText(null);
+        // alert.setContentText("Pituus: 2h 35min\nIMDB: 8.2\nGenre: kauhu");
+        //alert.setContentText(elokuvalista.getElokuvat()[3].tietojaElokuva());
+        // Näytetään alertti-ikkuna ja odotetaan, että käyttäjä sulkee sen
+        //alert.showAndWait();
 
     /**
      * @author teemuiljin
@@ -115,7 +179,13 @@ public class ElokuvaGUIController {
      */
     @FXML
     private void Kauhu() {
-        Dialogs.showMessageDialog("Näyttää kauhuelokuvat");
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Kauhun tiedot");
+        alert.setHeaderText(null);
+        alert.setContentText(genret.getGenre()[1].tietojaGenre());
+
+        // Näytetään alertti-ikkuna ja odotetaan, että käyttäjä sulkee sen
+        alert.showAndWait();
     }
 
     /**
@@ -126,7 +196,14 @@ public class ElokuvaGUIController {
      */
     @FXML
     private void Fantasia() {
-        Dialogs.showMessageDialog("Näyttää fantasiaelokuvat");
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Fantasian tiedot");
+        alert.setHeaderText(null);
+        alert.setContentText(genret.getGenre()[0].tietojaGenre());
+
+        // Näytetään alertti-ikkuna ja odotetaan, että käyttäjä sulkee sen
+        alert.showAndWait();
+
     }
 
     /**
@@ -137,6 +214,13 @@ public class ElokuvaGUIController {
      */
     @FXML
     private void Toiminta() {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Toiminnan tiedot");
+        alert.setHeaderText(null);
+        alert.setContentText(genret.getGenre()[3].tietojaGenre());
+
+        // Näytetään alertti-ikkuna ja odotetaan, että käyttäjä sulkee sen
+        alert.showAndWait();
 
     }
 
@@ -147,8 +231,13 @@ public class ElokuvaGUIController {
      */
     @FXML
     private void lisays() {
-
+        if (elokuvalista == null) return;
+        Elokuva hpuusi = new Elokuva(1, "moi", "moi", "3h30" );
+        elokuvalista.lisaa(hpuusi);
+        items.add(hpuusi.tietojaElokuva());
     }
+
+
 
     /**
      * @author teemuiljin

@@ -4,6 +4,7 @@ package fxElokuva;
  * @author teemuiljin
  * Genre java luokka, johon laitetaan tietoja genreistä, joka haetaan ELOKUVAT LUOKKAAT
  * TÄRKEÄNÄ GENRE-ID
+ * (EI TARVITSE MAINIA)
  */
 
 public class Elokuva {
@@ -42,6 +43,7 @@ public class Elokuva {
      * TÄRKEÄÄ!
      * elokuva alustetaan käyttöä varten ja tehdään niistä uniikkeja kutsua varten
      */
+
     public Elokuva(int genre_id, String nimi, String imdb, String pituus){
         this.nimi = nimi;
         this.genre_id = genre_id;
@@ -49,9 +51,14 @@ public class Elokuva {
         this.pituus = pituus;
     }
 
+    /**
+     * @author teemuiljin
+     * tietoja elokuvista eteenpäin elokvat.javaa varten
+     */
 
-    public String tietoja() {
-        return " Nimi: " + nimi + ", Genre: " + genre_id + ", Kesto: " + pituus;
+
+    public String tietojaElokuva() {
+        return " Nimi: " + nimi + ", Genre: " + genre_id + ", imdb: " + imdb + ", Kesto: " + pituus;
     }
 }
 
