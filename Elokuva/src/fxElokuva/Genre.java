@@ -17,6 +17,11 @@ public class Genre {
 
     private int tunnusNro;
 
+    /**
+     * @author teemuiljin
+     * tehdään genreistä uniikkeja
+     */
+
     public Genre(String genrenimi, String genrekuvaus, int tunnusNro){
         this.genrenimi = genrenimi;
         this.genrekuvaus= genrekuvaus;
@@ -24,7 +29,10 @@ public class Genre {
     }
 
 
-
+    /**
+     * @author teemuiljin
+     * tekee genrelle kuvauksen ja palauttaa sen merkkijonona ylemmäs genret-luokkaan
+     */
 
 
     public String tietojaGenre() {

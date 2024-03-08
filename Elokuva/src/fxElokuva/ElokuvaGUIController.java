@@ -45,12 +45,30 @@ import fxElokuva.ElokuvaMain;
  */
 public class ElokuvaGUIController {
 
+
+    //listview alustetaan
+
     @FXML private ListView elokuvatop;
 
+    /**
+     * @author teemuiljin
+     * Otetaan listat alemmista luokista guihin, että käyttö mahdollista (Elokuvat ja Genret)
+     */
     private Elokuvat elokuvalista = new Elokuvat();
     private Genret genret = new Genret();
+
+    /**
+     * @author teemuiljin
+     * @version 4.3.2024
+     * Alustetaan lista elokuvatop, johon voi lisätä pelkällä items.add komennolla
+     */
     private ObservableList<String> items = FXCollections.observableArrayList();
 
+    /**
+     * initialize suoritetaan kun gui alustetaan. List view komponentille elokuvatop asetetaan
+     * observable list (items) elokuvien tietoja käyttäen. Sitten lisätään elokuvat getElokuvat-metodilla (Elokuvat-luokka) ja
+     * tietojaElokuvasta-metodilla (Elokuva-luokasta). kaikki yhdistyy ja tulostuu listaan.
+     */
 
     public void initialize() {
 
@@ -103,7 +121,7 @@ public class ElokuvaGUIController {
 
     /**
      * @author teemuiljin
-     * Automoitu toiminta vaihetta 5 varten
+     * Automoitu toiminta , mutta nappuloilla
      */
     //@FXML
     //private void nappulanPainallus() {
@@ -119,7 +137,6 @@ public class ElokuvaGUIController {
 
     /**
      * @author teemuiljin
-     * Automoitu toiminta vaihetta 5 varten
      * jokaiselle top elokuvalle oma nappi
      * yhteensä 4 nappia 4 top elokuvaa
      */
@@ -232,7 +249,7 @@ public class ElokuvaGUIController {
     @FXML
     private void lisays() {
         if (elokuvalista == null) return;
-        Elokuva hpuusi = new Elokuva(1, "moi", "moi", "3h30" );
+        Elokuva hpuusi = new Elokuva(1, "Uusi elokuva", "?", "ken tietää" );
         elokuvalista.lisaa(hpuusi);
         items.add(hpuusi.tietojaElokuva());
     }
@@ -241,7 +258,7 @@ public class ElokuvaGUIController {
 
     /**
      * @author teemuiljin
-     * Elokuvien poisto listasta
+     * Elokuvien poisto listasta (ei vielä tehty)
      * (listan muokkaus)
      */
     @FXML

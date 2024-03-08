@@ -2,8 +2,7 @@ package fxElokuva;
 
 /**
  * @author teemuiljin
- * Genre java luokka, johon laitetaan tietoja genreistä, joka haetaan ELOKUVAT LUOKKAAT
- * TÄRKEÄNÄ GENRE-ID
+ * Elokuva luokka, jossa tietoja yksittäisestä elokuvasta
  * (EI TARVITSE MAINIA)
  */
 
@@ -11,7 +10,7 @@ public class Elokuva {
 
     /**
      * @author teemuiljin
-     * Ensin alustetaan tiedot elokuville
+     * Ensin alustetaan tiedot elokuville (4 attribuuttia)
      */
 
     private int genre_id;
@@ -24,7 +23,7 @@ public class Elokuva {
 
     /**
      * @author teemuiljin
-     * luodaan myös tunnusnumero ja seuraavanro
+     * luodaan myös tunnusnumero ja seuraavanro (turha nykyään)
      */
 
     private static int seuraavaVapaa = 1;
@@ -32,7 +31,7 @@ public class Elokuva {
 
     /**
      * @author teemuiljin
-     * Jotta ei sekotu ja koodi toimii
+     * Jotta ei sekotu ja koodi toimii (turha nykyään)
      */
     public Elokuva(){
 
@@ -53,7 +52,7 @@ public class Elokuva {
 
     /**
      * @author teemuiljin
-     * tietoja elokuvista eteenpäin elokvat.javaa varten
+     * tietoja elokuvista eteenpäin elokvat.javaa varten (käytetään myöhemmin eli kutsutaan ylempänä Elokuvat.java)
      */
 
 

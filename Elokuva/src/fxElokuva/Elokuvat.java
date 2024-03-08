@@ -4,8 +4,7 @@ import java.util.*;
 
 /**
  * @author teemuiljin
- * Elokuvat java luokka, johon haetaan elokuva luokasta tietoja ja vie eteenpäin mainiin
- * TÄRKEÄNÄ GENRE-ID
+ * Elokuvat java luokka sisältää tietoja elokuvista ja pitää kirjaa niiden lukumäärästä käyttäen lkm.
  * (EI TARVITA MAINIA)
  */
     import java.io.PrintStream;
@@ -24,7 +23,7 @@ import java.util.*;
 
         /**
          * @author teemuiljin
-         * lisää halutun elokuvan listaan
+         * lisää halutun elokuvan listaan ja kasvattaa lkm yhdellä eli ei päällekkäin.
          */
 
         public void lisaa(Elokuva elokuva){
@@ -55,6 +54,12 @@ import java.util.*;
             lisaa(jb);
             System.out.println();
 
+
+            /**
+             * @author teemuiljin
+             * Lopuksi vielä nopea testi
+             * (turha testi, mutta pidän sen nyt toistaiseksi)
+             */
             System.out.println("Kaikki elokuvat:");
             for (int i = 0; i < this.lkm; i++) {
                 System.out.println("Elokuva " + (i+1) + ": " + this.elokuva[i].tietojaElokuva());

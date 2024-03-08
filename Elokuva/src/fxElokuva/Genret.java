@@ -2,6 +2,12 @@ package fxElokuva;
 
 import fxElokuva.Genre;
 
+
+/**
+ * @author teemuiljin
+ * Aivan identtinen kuin Elokuvat, mutta genreille
+ */
+
 public class Genret {
     private Genre genre[] = new Genre[10];
 

@@ -47,7 +47,6 @@ public class ElokuvaMain extends Application {
     public static void main(String[] args) {
         launch(args);
 
-        //testi elokuvaa varten
 
     }
 }
