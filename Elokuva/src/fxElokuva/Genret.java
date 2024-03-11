@@ -2,6 +2,8 @@ package fxElokuva;
 
 import fxElokuva.Genre;
 
+import java.util.Optional;
+
 
 /**
  * @author teemuiljin
@@ -13,10 +15,11 @@ public class Genret {
 
     private int lkm = 0;
 
-    private void lisaa(Genre genre) {
+    public void lisaa(Genre genre) {
         this.genre[lkm] = genre;
         lkm++;
     }
+
 
     public Genre[] getGenre() {
         return genre;
@@ -35,4 +38,6 @@ public class Genret {
 
 
     }
+
+
 }

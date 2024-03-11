@@ -35,8 +35,8 @@ import java.util.*;
          * @author teemuiljin
          * Tehdään ja alustetaan elokuvia
          * Lisätään ne myös lisää-metodilla listaan
+         * getteri tehty lisäksi jota kutsutaan myöhemmin
          */
-
 
         public Elokuva[] getElokuvat() {
             return elokuva;

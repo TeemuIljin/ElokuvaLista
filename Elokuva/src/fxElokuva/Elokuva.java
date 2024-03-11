@@ -21,13 +21,7 @@ public class Elokuva {
 
     private String pituus;
 
-    /**
-     * @author teemuiljin
-     * luodaan myös tunnusnumero ja seuraavanro (turha nykyään)
-     */
 
-    private static int seuraavaVapaa = 1;
-    private int tunnusNro;
 
     /**
      * @author teemuiljin

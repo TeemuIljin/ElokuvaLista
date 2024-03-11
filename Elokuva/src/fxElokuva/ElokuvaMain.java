@@ -18,6 +18,7 @@ import fxElokuva.Elokuva;
  * Mainiin luodaan sisältöä
  * Esimerkiksi lista luodaan ja sen alkioksi asetetaan harri ja sen tietoja
  * Nämä tiedot printataan ohjelman alussa
+ * Liittää guihin guiviewin
  */
 public class ElokuvaMain extends Application {
     @Override

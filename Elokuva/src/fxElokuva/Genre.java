@@ -1,5 +1,7 @@
 package fxElokuva;
 
+import java.util.Optional;
+
 /**
  * @author teemuiljin
  * Genre java luokka, johon laitetaan tietoja genreistä, joka haetaan mainiin
@@ -36,6 +38,10 @@ public class Genre {
 
 
     public String tietojaGenre() {
-        return " Genren kuvaus: " + genrekuvaus + ", Genren nimi: " + genrenimi +  ", Genren tunnus: " + tunnusNro;
+        return " Tiedot: " + genrekuvaus + ", Genre: " + genrenimi +  ", Genren tunnus: " + tunnusNro;
+    }
+
+    public int getId() {
+        return tunnusNro;
     }
 }
