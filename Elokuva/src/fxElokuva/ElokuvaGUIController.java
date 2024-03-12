@@ -275,22 +275,35 @@ public class ElokuvaGUIController {
      * Elokuvien lisäys listaan tehdään myös randomint ja kutsutaan
      * (listan muokkaus)
      */
+
     @FXML
-    private void lisays() {
+    private void lisaysleffa() {
         TextInputDialog dialog = new TextInputDialog("Lisää elokuva");
         dialog.setHeaderText(null);
         dialog.setTitle("Vastaa");
         dialog.setContentText("Elokuvan nimi:");
         Optional<String> answer = dialog.showAndWait();
-        System.out.println(answer.isPresent() ?
-                answer.get() : "Ei ollut vastausta");
+        System.out.println(answer.isPresent() ? answer.get() : "Ei ollut vastausta");
 
+        // hakee valitun genren elokuvatop2 listasta
+        String selectedGenre = (String) elokuvatop2.getSelectionModel().getSelectedItem();
 
-        int randomGenreId = generateRandomGenreId();
-        Elokuva hpuusi = new Elokuva(randomGenreId, answer.toString(), "?", "ken tietää" );
+        // luo uuden elokuvan sillä genre-id:llä
+        Elokuva hpuusi = new Elokuva(selectedGenre, answer.orElse(""), "?", "ken tietää");
+
+        // lisää uuden leffan listaan
         elokuvalista.lisaa(hpuusi);
         items.add(hpuusi.tietojaElokuva());
     }
+
+
+
+
+    /**
+     * @author teemuiljin
+     * Genrejen lisäys listaan tehdään myös randomint ja kutsutaan
+     * (listan muokkaus)
+     */
     @FXML
     private void lisays2() {
         TextInputDialog dialog = new TextInputDialog("Genre");
@@ -302,7 +315,7 @@ public class ElokuvaGUIController {
                 answer.get() : "Ei ollut vastausta");
 
 
-
+        //tekee randomin genreid:n
         int randomGenreId = generateRandomGenreId();
         Genre hpuusi2 = new Genre(answer.toString(), "?", randomGenreId );
         genret.lisaa(hpuusi2);
@@ -315,7 +328,6 @@ public class ElokuvaGUIController {
         //laitoin nyt max 10
         return random.nextInt(10);
     }
-
 
 
 

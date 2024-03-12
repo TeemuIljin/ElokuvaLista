@@ -19,11 +19,19 @@ public class Genret {
         this.genre[lkm] = genre;
         lkm++;
     }
-
+    /**
+     * @author teemuiljin
+     * Peursgetteri, jota kutsutaan myöhemmin
+     */
 
     public Genre[] getGenre() {
         return genre;
     }
+
+    /**
+     * @author teemuiljin
+     * luodaan pari yksinkertaista elokuvaa ja asetetaan niille tiedot
+     */
 
     public Genret() {
         Genre hp = new Genre("fantasia", "tutkimusmatka fantasiassa", 1);

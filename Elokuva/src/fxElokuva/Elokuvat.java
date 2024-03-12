@@ -60,14 +60,13 @@ import java.util.*;
              * Lopuksi vielä nopea testi
              * (turha testi, mutta pidän sen nyt toistaiseksi)
              */
-            System.out.println("Kaikki elokuvat:");
-            for (int i = 0; i < this.lkm; i++) {
-                System.out.println("Elokuva " + (i+1) + ": " + this.elokuva[i].tietojaElokuva());
+            //System.out.println("Kaikki elokuvat:");
+            //for (int i = 0; i < this.lkm; i++) {
+            //System.out.println("Elokuva " + (i+1) + ": " + this.elokuva[i].tietojaElokuva());
 
         }
 
 
         }
-    }
 
 

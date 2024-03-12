@@ -10,7 +10,7 @@ public class Elokuva {
 
     /**
      * @author teemuiljin
-     * Ensin alustetaan tiedot elokuville (4 attribuuttia)
+     * Ensin alustetaan tiedot elokuville (5 attribuuttia)
      */
 
     private int genre_id;
@@ -21,20 +21,25 @@ public class Elokuva {
 
     private String pituus;
 
+    private String genre;
+
 
 
     /**
      * @author teemuiljin
-     * Jotta ei sekotu ja koodi toimii (turha nykyään)
+     * Konstruktori jotta ei sekotu ja koodi toimii (linkkausta varten)
      */
-    public Elokuva(){
-
+    public Elokuva(String selectedGenre, String nimi, String imdb, String kenTietää){
+        this.nimi = nimi;
+        this.genre = selectedGenre;
+        this.imdb = imdb;
+        this.pituus = kenTietää;
     }
 
     /**
      * @author teemuiljin
      * TÄRKEÄÄ!
-     * elokuva alustetaan käyttöä varten ja tehdään niistä uniikkeja kutsua varten
+     * Normi konstruktori, jossa elokuva alustetaan käyttöä varten ja tehdään niistä uniikkeja kutsua varten
      */
 
     public Elokuva(int genre_id, String nimi, String imdb, String pituus){
@@ -51,7 +56,7 @@ public class Elokuva {
 
 
     public String tietojaElokuva() {
-        return " Nimi: " + nimi + ", Genre: " + genre_id + ", imdb: " + imdb + ", Kesto: " + pituus;
+        return " Nimi: " + nimi +  ", imdb: " + imdb + ", Kesto: " + pituus + ", genre: " + genre;
     }
 }
 
