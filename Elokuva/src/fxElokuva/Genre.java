@@ -13,6 +13,10 @@ public class Genre {
      * @author teemuiljin
      * genreille kuvaukset, tunnusnumero ja genre tietysti
      */
+
+    private static int uniikkinro = 0;
+
+
     private String genrenimi;
 
     private String genrekuvaus;

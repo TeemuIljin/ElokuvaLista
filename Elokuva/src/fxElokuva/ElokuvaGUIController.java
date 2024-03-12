@@ -83,14 +83,14 @@ public class ElokuvaGUIController {
 
     public void initialize() {
 
-        // Aseta lista Listviewiin
+        // Asetan lista Listviewiin
         elokuvatop.setItems(items);
         items.add(elokuvalista.getElokuvat()[0].tietojaElokuva());
         items.add(elokuvalista.getElokuvat()[1].tietojaElokuva());
         items.add(elokuvalista.getElokuvat()[2].tietojaElokuva());
         items.add(elokuvalista.getElokuvat()[3].tietojaElokuva());
 
-        // Aseta genret lista Liesviewiin
+        // Asetan genret lista Liesviewiin
         elokuvatop2.setItems(items2);
         items2.add(genret.getGenre()[0].tietojaGenre());
         items2.add(genret.getGenre()[1].tietojaGenre());
@@ -225,7 +225,7 @@ public class ElokuvaGUIController {
         alert.setHeaderText(null);
         alert.setContentText(genret.getGenre()[1].tietojaGenre());
 
-        // Näytetään alertti-ikkuna ja odotetaan, että käyttäjä sulkee sen
+        // Näyttää alertin
         alert.showAndWait();
         items.add(elokuvalista.getElokuvat()[1].tietojaElokuva());
     }
@@ -246,9 +246,6 @@ public class ElokuvaGUIController {
 
         // Näytetään alertti-ikkuna ja odotetaan, että käyttäjä sulkee sen
         alert.showAndWait();
-
-        //SortedList<String> sortedList = new SortedList(elokuvalista);
-
     }
 
     /**
@@ -272,7 +269,7 @@ public class ElokuvaGUIController {
 
     /**
      * @author teemuiljin
-     * Elokuvien lisäys listaan tehdään myös randomint ja kutsutaan
+     * Elokuvien lisäys listaan ja mahdollisuus tehdä tietyn genren elokuvia
      * (listan muokkaus)
      */
 

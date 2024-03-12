@@ -27,7 +27,7 @@ public class Elokuva {
 
     /**
      * @author teemuiljin
-     * Konstruktori jotta ei sekotu ja koodi toimii (linkkausta varten)
+     * Konstruktori jotta ei sekotu ja koodi toimii (linkkausta varten listalle)
      */
     public Elokuva(String selectedGenre, String nimi, String imdb, String kenTietää){
         this.nimi = nimi;
