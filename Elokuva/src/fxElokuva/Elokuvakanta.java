@@ -38,4 +38,13 @@ public class Elokuvakanta {
 
     private Elokuvat elokuvalista = new Elokuvat();
     private Genret genret = new Genret();
+
+    public Elokuvat getElokuvalista() {
+        return elokuvalista;
+
+    }
+    public Genret getGenret() {
+        return genret;
+    }
+
 }

@@ -64,8 +64,7 @@ public class ElokuvaGUIController {
      * @author teemuiljin
      * Otetaan listat alemmista luokista guihin, että käyttö mahdollista (Elokuvat ja Genret)
      */
-    private Elokuvat elokuvalista = new Elokuvat();
-    private Genret genret = new Genret();
+    private Elokuvakanta Ekanta = new Elokuvakanta();
 
     /**
      * @author teemuiljin
@@ -85,24 +84,17 @@ public class ElokuvaGUIController {
 
         // Asetan lista Listviewiin
         elokuvatop.setItems(items);
-        items.add(elokuvalista.getElokuvat()[0].tietojaElokuva());
-        items.add(elokuvalista.getElokuvat()[1].tietojaElokuva());
-        items.add(elokuvalista.getElokuvat()[2].tietojaElokuva());
-        items.add(elokuvalista.getElokuvat()[3].tietojaElokuva());
+        items.add(Ekanta.getElokuvalista().getElokuvat()[0].tietojaElokuva());
+        items.add(Ekanta.getElokuvalista().getElokuvat()[1].tietojaElokuva());
+        items.add(Ekanta.getElokuvalista().getElokuvat()[2].tietojaElokuva());
+        items.add(Ekanta.getElokuvalista().getElokuvat()[3].tietojaElokuva());
 
         // Asetan genret lista Liesviewiin
         elokuvatop2.setItems(items2);
-        items2.add(genret.getGenre()[0].tietojaGenre());
-        items2.add(genret.getGenre()[1].tietojaGenre());
-        items2.add(genret.getGenre()[2].tietojaGenre());
-
-
-
-
-
+        items2.add(Ekanta.getGenret().getGenre()[0].tietojaGenre());
+        items2.add(Ekanta.getGenret().getGenre()[1].tietojaGenre());
+        items2.add(Ekanta.getGenret().getGenre()[2].tietojaGenre());
     }
-
-
 
 
     /**
@@ -223,11 +215,9 @@ public class ElokuvaGUIController {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Kauhun tiedot");
         alert.setHeaderText(null);
-        alert.setContentText(genret.getGenre()[1].tietojaGenre());
 
         // Näyttää alertin
         alert.showAndWait();
-        items.add(elokuvalista.getElokuvat()[1].tietojaElokuva());
     }
 
     /**
@@ -242,7 +232,6 @@ public class ElokuvaGUIController {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Fantasian tiedot");
         alert.setHeaderText(null);
-        alert.setContentText(genret.getGenre()[0].tietojaGenre());
 
         // Näytetään alertti-ikkuna ja odotetaan, että käyttäjä sulkee sen
         alert.showAndWait();
@@ -260,11 +249,9 @@ public class ElokuvaGUIController {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Toiminnan tiedot");
         alert.setHeaderText(null);
-        alert.setContentText(genret.getGenre()[3].tietojaGenre());
 
         // Näytetään alertti-ikkuna ja odotetaan, että käyttäjä sulkee sen
         alert.showAndWait();
-
     }
 
     /**
@@ -289,7 +276,7 @@ public class ElokuvaGUIController {
         Elokuva hpuusi = new Elokuva(selectedGenre, answer.orElse(""), "?", "ken tietää");
 
         // lisää uuden leffan listaan
-        elokuvalista.lisaa(hpuusi);
+        Ekanta.getElokuvalista().lisaa(hpuusi);
         items.add(hpuusi.tietojaElokuva());
     }
 
@@ -312,19 +299,14 @@ public class ElokuvaGUIController {
                 answer.get() : "Ei ollut vastausta");
 
 
-        //tekee randomin genreid:n
-        int randomGenreId = generateRandomGenreId();
-        Genre hpuusi2 = new Genre(answer.toString(), "?", randomGenreId );
-        genret.lisaa(hpuusi2);
+
+
+        Genre hpuusi2 = new Genre(answer.toString(), "?");
+        Ekanta.getGenret().lisaa(hpuusi2);
         items2.add(hpuusi2.tietojaGenre());
     }
 
-    private Random random = new Random();
 
-    private int generateRandomGenreId() {
-        //laitoin nyt max 10
-        return random.nextInt(10);
-    }
 
 
 

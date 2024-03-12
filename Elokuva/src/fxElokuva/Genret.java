@@ -34,15 +34,13 @@ public class Genret {
      */
 
     public Genret() {
-        Genre hp = new Genre("fantasia", "tutkimusmatka fantasiassa", 1);
-        Genre sc4 = new Genre("kauhu", "kauhuelokuvia sumuisille illoille", 2);
-        Genre t2 = new Genre("toiminta", "vähintään pg 16 elokuvia", 3);
-        Genre jb = new Genre("toiminta", "vähintään pg 16 elokuvia", 3);
+        Genre hp = new Genre("fantasia", "tutkimusmatka fantasiassa");
+        Genre sc4 = new Genre("kauhu", "kauhuelokuvia sumuisille illoille");
+        Genre t2 = new Genre("toiminta", "vähintään pg 16 elokuvia");
 
         lisaa(hp);
         lisaa(sc4);
         lisaa(t2);
-        lisaa(jb);
 
 
     }

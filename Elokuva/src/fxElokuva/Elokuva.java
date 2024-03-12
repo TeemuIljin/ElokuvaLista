@@ -13,7 +13,9 @@ public class Elokuva {
      * Ensin alustetaan tiedot elokuville (5 attribuuttia)
      */
 
-    private int genre_id;
+    private static int seuraavaID = 1;
+
+    private int uniikkiID;
 
     private String nimi;
 
@@ -23,7 +25,9 @@ public class Elokuva {
 
     private String genre;
 
-
+    public int getUniikkiID() {
+        return uniikkiID;
+    }
 
     /**
      * @author teemuiljin
@@ -34,6 +38,8 @@ public class Elokuva {
         this.genre = selectedGenre;
         this.imdb = imdb;
         this.pituus = kenTietää;
+        this.uniikkiID = seuraavaID++;
+
     }
 
     /**
@@ -42,11 +48,12 @@ public class Elokuva {
      * Normi konstruktori, jossa elokuva alustetaan käyttöä varten ja tehdään niistä uniikkeja kutsua varten
      */
 
-    public Elokuva(int genre_id, String nimi, String imdb, String pituus){
+    public Elokuva(int genre, String nimi, String imdb, String pituus){
         this.nimi = nimi;
-        this.genre_id = genre_id;
         this.imdb = imdb;
+        this.genre = "";
         this.pituus = pituus;
+        this.uniikkiID = seuraavaID++;
     }
 
     /**
@@ -56,7 +63,7 @@ public class Elokuva {
 
 
     public String tietojaElokuva() {
-        return " Nimi: " + nimi +  ", imdb: " + imdb + ", Kesto: " + pituus + ", genre: " + genre;
+        return " Nimi: " + nimi +  ", imdb: " + imdb + ", Kesto: " + pituus + ", genre: " + genre + ", ID: " + uniikkiID;
     }
 }
 

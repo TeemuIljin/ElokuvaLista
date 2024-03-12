@@ -14,24 +14,24 @@ public class Genre {
      * genreille kuvaukset, tunnusnumero ja genre tietysti
      */
 
-    private static int uniikkinro = 0;
+    private static int seuraavaID = 1;
 
+    private int uniikkiID;
 
     private String genrenimi;
 
     private String genrekuvaus;
 
-    private int tunnusNro;
 
     /**
      * @author teemuiljin
      * tehdään genreistä uniikkeja
      */
 
-    public Genre(String genrenimi, String genrekuvaus, int tunnusNro){
+    public Genre(String genrenimi, String genrekuvaus ){
         this.genrenimi = genrenimi;
         this.genrekuvaus= genrekuvaus;
-        this.tunnusNro= tunnusNro;
+        this.uniikkiID = seuraavaID++;
     }
 
 
@@ -42,10 +42,7 @@ public class Genre {
 
 
     public String tietojaGenre() {
-        return " Tiedot: " + genrekuvaus + ", Genre: " + genrenimi +  ", Genren tunnus: " + tunnusNro;
+        return " Tiedot: " + genrekuvaus + ", Genre: " + genrenimi +  ", Genren ID: " + uniikkiID ;
     }
 
-    public int getId() {
-        return tunnusNro;
-    }
 }
