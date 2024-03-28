@@ -21,6 +21,7 @@ import fxElokuva.Elokuva;
  * Liittää guihin guiviewin
  */
 public class ElokuvaMain extends Application {
+    static Elokuvakanta kanta = new Elokuvakanta();
     @Override
     public void start(Stage primaryStage) {
         try {
@@ -32,6 +33,16 @@ public class ElokuvaMain extends Application {
             primaryStage.setScene(scene);
             primaryStage.setTitle("Elokuva");
             primaryStage.show();
+
+
+            /**
+             * @author teemuiljin
+             * @version 4.3.2024
+             * Mainissa luetaan genret.dat ja elokuvat.dat
+             */
+
+            kanta.getElokuvalista().lueTiedostosta();
+            kanta.getGenret().lueTiedostosta("Tiedostot/Genret.dat");
 
 
         } catch (Exception e) {

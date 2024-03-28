@@ -29,6 +29,10 @@ import javax.xml.namespace.QName;
 //lista
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Random;
@@ -64,13 +68,14 @@ public class ElokuvaGUIController {
      * @author teemuiljin
      * Otetaan listat alemmista luokista guihin, että käyttö mahdollista (Elokuvat ja Genret)
      */
-    private Elokuvakanta Ekanta = new Elokuvakanta();
 
     /**
      * @author teemuiljin
      * @version 4.3.2024
      * Alustetaan lista elokuvatop, johon voi lisätä pelkällä items.add komennolla
      */
+
+
     private ObservableList<String> items = FXCollections.observableArrayList();
     private ObservableList<String> items2 = FXCollections.observableArrayList();
 
@@ -81,19 +86,38 @@ public class ElokuvaGUIController {
      */
 
     public void initialize() {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("Tiedostot/Elokuvat.dat" ));
+            String line;
 
-        // Asetan lista Listviewiin
-        elokuvatop.setItems(items);
-        items.add(Ekanta.getElokuvalista().getElokuvat()[0].tietojaElokuva());
-        items.add(Ekanta.getElokuvalista().getElokuvat()[1].tietojaElokuva());
-        items.add(Ekanta.getElokuvalista().getElokuvat()[2].tietojaElokuva());
-        items.add(Ekanta.getElokuvalista().getElokuvat()[3].tietojaElokuva());
+            while ((line = reader.readLine()) != null) {
+                // Lisään listalle
+                items.add(line);
+            }
 
-        // Asetan genret lista Liesviewiin
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("Tiedostot/Genret.dat" ));
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                // Lisään listalle
+                items2.add(line);
+            }
+
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //listojen asetus
         elokuvatop2.setItems(items2);
-        items2.add(Ekanta.getGenret().getGenre()[0].tietojaGenre());
-        items2.add(Ekanta.getGenret().getGenre()[1].tietojaGenre());
-        items2.add(Ekanta.getGenret().getGenre()[2].tietojaGenre());
+        elokuvatop.setItems(items);
+
+
     }
 
 
@@ -129,7 +153,8 @@ public class ElokuvaGUIController {
      * Lopettaa ohjelman (liitetty lopeta nappulaan)
      */
     @FXML
-    private void Lopeta() {
+    private void Lopeta() throws SailoException {
+        ElokuvaMain.kanta.talletaElokuvat();
         Platform.exit();
     }
 
@@ -275,8 +300,8 @@ public class ElokuvaGUIController {
         // luo uuden elokuvan sillä genre-id:llä
         Elokuva hpuusi = new Elokuva(selectedGenre, answer.orElse(""), "?", "ken tietää");
 
-        // lisää uuden leffan listaan
-        Ekanta.getElokuvalista().lisaa(hpuusi);
+        // lisää uuden leffan listaan (ekannan kautta)
+        ElokuvaMain.kanta.getElokuvalista().lisaa(hpuusi);
         items.add(hpuusi.tietojaElokuva());
     }
 
@@ -300,31 +325,39 @@ public class ElokuvaGUIController {
 
 
 
-
+        //Ekannan kautta guihin
         Genre hpuusi2 = new Genre(answer.toString(), "?");
-        Ekanta.getGenret().lisaa(hpuusi2);
+        ElokuvaMain.kanta.getGenret().lisaa(hpuusi2);
         items2.add(hpuusi2.tietojaGenre());
     }
-
-
-
-
 
     /**
      * @author teemuiljin
      * Elokuvien poisto listasta (ei vielä tehty)
      * (listan muokkaus)
      */
-    @FXML
-    private void poisto() {
+
+
+
+
+    /**
+     * @author teemuiljin
+     * luetaan tiedostosta elokuvat tehty 19.3
+     */
+    private void lueElokuvatTiedostosta(String tiedostonimi) {
+        try (BufferedReader br = new BufferedReader(new FileReader(tiedostonimi))) {
+            String rivi;
+            while ((rivi = br.readLine()) != null) {
+                items.add(rivi);
+            }
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Virhe");
+            alert.setHeaderText(null);
+            alert.setContentText("Tiedoston lukeminen epäonnistui.");
+            alert.showAndWait();
+        }
     }
-
-    // Tämä metodi liitetään nappiin, jotta se tulostaa valitun elokuvan tiedot
-
-
-
-
-
 
 }
 

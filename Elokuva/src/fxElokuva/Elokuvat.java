@@ -1,4 +1,5 @@
 package fxElokuva;
+import java.io.*;
 import java.util.*;
 
 
@@ -7,9 +8,8 @@ import java.util.*;
  * Elokuvat java luokka sisältää tietoja elokuvista ja pitää kirjaa niiden lukumäärästä käyttäen lkm.
  * (EI TARVITA MAINIA)
  */
-    import java.io.PrintStream;
 
-    public class Elokuvat {
+public class Elokuvat {
 
 
         /**
@@ -18,7 +18,7 @@ import java.util.*;
          * tehdään lkm jolloin lista dynaamisempi ja ei tarvitse foria
          */
         private Elokuva elokuva[] = new Elokuva[10];
-
+        private boolean muutettu = false;
         private int lkm = 0;
 
         /**
@@ -26,9 +26,17 @@ import java.util.*;
          * lisää halutun elokuvan listaan ja kasvattaa lkm yhdellä eli ei päällekkäin.
          */
 
+        public void Muutettu() {
+            muutettu = true;
+        }
+
+        public boolean OnkoMuutettu() {
+            return muutettu;
+        }
         public void lisaa(Elokuva elokuva){
             this.elokuva[lkm] = elokuva;
             lkm++;
+            Muutettu();
         }
 
         /**
@@ -43,29 +51,63 @@ import java.util.*;
         }
 
         public Elokuvat(){
-            Elokuva hp = new Elokuva(1, "Harry potter 1", "8.2", "3h30m");
-            Elokuva sc4 = new Elokuva(2, "Scream 4","8.8", "2h50m");
-            Elokuva t2 = new Elokuva(3, "Terminator 2","7.1", "2h30m");
-            Elokuva jb = new Elokuva(4, "James Bond","9.3", "3h15m");
-
-            lisaa(hp);
-            lisaa(sc4);
-            lisaa(t2);
-            lisaa(jb);
-            System.out.println();
-
-
-            /**
-             * @author teemuiljin
-             * Lopuksi vielä nopea testi
-             * (turha testi, mutta pidän sen nyt toistaiseksi)
-             */
-            //System.out.println("Kaikki elokuvat:");
-            //for (int i = 0; i < this.lkm; i++) {
-            //System.out.println("Elokuva " + (i+1) + ": " + this.elokuva[i].tietojaElokuva());
-
         }
 
+        /**
+         * @author teemuiljin
+         * Lue tiedostosta lukee datan tiedostosta 19.3
+         */
+
+        public void lueTiedostosta() throws IOException, SailoException {
+            Elokuvat elokuvat = new Elokuvat();
+            BufferedReader reader = new BufferedReader(new FileReader("Tiedostot/Elokuvat.dat"));
+            String line;
+
+
+            while ((line = reader.readLine()) != null) {
+                Elokuva elokuva = Elokuva.parse(line);
+                elokuvat.lisaa(elokuva);
+            }
+            reader.close();
+            return;
+        }
+
+        public void tallenna() throws SailoException {
+            if ( !OnkoMuutettu() ) return;
+
+            File fbak = new File("Tiedostot/Elokuvat.bak");
+            File ftied = new File("Tiedostot/Elokuvat.dat");
+            fbak.delete(); // if .. System.err.println("Ei voi tuhota");
+            ftied.renameTo(fbak); // if .. System.err.println("Ei voi nimetä");
+
+            try ( PrintWriter fo = new PrintWriter(new FileWriter(ftied.getCanonicalPath())) ) {
+
+                for (int i = 0; i<10 ; i++) {
+                    fo.println(elokuva[i].toString());
+                }
+                //} catch ( IOException e ) { // ei heitä poikkeusta
+                //  throw new SailoException("Tallettamisessa ongelmia: " + e.getMessage());
+            } catch ( FileNotFoundException ex ) {
+                throw new SailoException("Tiedosto " + ftied.getName() + " ei aukea");
+            } catch ( IOException ex ) {
+                throw new SailoException("Tiedoston " + ftied.getName() + " kirjoittamisessa ongelmia");
+            }
+
+            Muutettu();
+        }
+
+
+
+
+        /**
+         * @author teemuiljin
+         * Tallentaa tieodstoon 19.3
+         */
+
+        /**
+         * @author teemuiljin
+         * Attribuutti pitää kirjaa tiedon säilyttämisen tarpeesta 19.3
+         */
 
 
     }

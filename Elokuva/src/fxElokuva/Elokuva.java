@@ -1,5 +1,7 @@
 package fxElokuva;
 
+import fi.jyu.mit.ohj2.Mjonot;
+
 /**
  * @author teemuiljin
  * Elokuva luokka, jossa tietoja yksittäisestä elokuvasta
@@ -24,6 +26,14 @@ public class Elokuva {
     private String pituus;
 
     private String genre;
+
+    public Elokuva(String nimi, String imdb, String pituus, String genre, int id) {
+        this.nimi = nimi;
+        this.genre = genre;
+        this.imdb = imdb;
+        this.pituus = pituus;
+        this.uniikkiID = id;
+    }
 
     public int getUniikkiID() {
         return uniikkiID;
@@ -64,6 +74,32 @@ public class Elokuva {
 
     public String tietojaElokuva() {
         return " Nimi: " + nimi +  ", imdb: " + imdb + ", Kesto: " + pituus + ", genre: " + genre + ", ID: " + uniikkiID;
+    }
+    /**
+     * Parse korjattu 20.3
+     */
+    public static Elokuva parse(String data) {
+        String[] parts = data.split("\\|");
+        if (parts.length < 5) {
+            // Not enough parts to represent a valid movie, return null or throw exception
+            return null; // or throw an exception
+        }
+        String nimi = parts[0].trim();
+        String imdb = parts[1].trim();
+        String pituus = parts[2].trim();
+        String ID = parts[3].trim();
+        int id = Integer.parseInt(ID);
+        return new Elokuva(nimi, imdb, pituus, "", id); // Notice that the genre attribute is left empty here
+    }
+
+
+
+    /**
+     * Tostring tehty 19.3
+     */
+    @Override
+    public String toString() {
+        return nimi + ", " + imdb + ", " + pituus + ", " + genre;
     }
 }
 
