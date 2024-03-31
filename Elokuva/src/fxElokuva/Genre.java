@@ -3,7 +3,7 @@ import fi.jyu.mit.ohj2.Mjonot;
 
 /**
  * @author teemuiljin
- * Genre java luokka, johon laitetaan tietoja genreistä, joka haetaan mainiin
+ * Genre java luokka, johon laitetaan tietoja genreistä, joka haetaan mainiin (alustan attribuutit)
  * TÄRKEÄNÄ GENRE-ID
  */
 public class Genre {
@@ -22,13 +22,18 @@ public class Genre {
 
     /**
      * @author teemuiljin
-     * tehdään genreistä uniikkeja
+     * tehdään genreistä uniikkeja 2 konstruktoria
      */
 
     public Genre(String genrenimi, String genrekuvaus){
         this.genrekuvaus = genrekuvaus;
         this.genrenimi = genrenimi;
         this.uniikkiID = seuraavaID++;
+    }
+    public Genre(String genrenimi, String genrekuvaus, int uniikkiID){
+        this.genrekuvaus = genrekuvaus;
+        this.genrenimi = genrenimi;
+        this.uniikkiID = uniikkiID;
     }
     /**
      * @author teemuiljin
@@ -41,18 +46,21 @@ public class Genre {
 
     /**
      * @author teemuiljin
-     * parse korjattu genreille 20.3
+     * parse korjattu genreille 31.3
      */
+
 
     public static Genre parse(String data) {
         String[] parts = data.split("\\|");
-        if (parts.length < 10) {
-            // Not enough parts to represent a valid genre, return null or throw exception
+        if (parts.length < 3) {
+            // Not enough parts to represent a valid movie, return null or throw exception
             return null; // or throw an exception
         }
         String genrekuvaus = parts[0].trim();
         String genrenimi = parts[1].trim();
-        return new Genre(genrekuvaus, genrenimi);
+        String uniikkiID = parts[2].trim();
+        int id = Integer.parseInt(uniikkiID);
+        return new Genre(genrekuvaus, genrenimi, id); // Notice that the genre attribute is left empty here
     }
 
     /**

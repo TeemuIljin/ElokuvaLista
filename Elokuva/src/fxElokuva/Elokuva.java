@@ -12,7 +12,7 @@ public class Elokuva {
 
     /**
      * @author teemuiljin
-     * Ensin alustetaan tiedot elokuville (5 attribuuttia)
+     * Ensin alustetaan tiedot elokuville (attribuutit)
      */
 
     private static int seuraavaID = 1;
@@ -76,7 +76,7 @@ public class Elokuva {
         return " Nimi: " + nimi +  ", imdb: " + imdb + ", Kesto: " + pituus + ", genre: " + genre + ", ID: " + uniikkiID;
     }
     /**
-     * Parse korjattu 20.3
+     * Parse korjattu 31.3
      */
     public static Elokuva parse(String data) {
         String[] parts = data.split("\\|");
@@ -99,7 +99,7 @@ public class Elokuva {
      */
     @Override
     public String toString() {
-        return nimi + ", " + imdb + ", " + pituus + ", " + genre;
+        return nimi + " | " + imdb + " | " + pituus + " | " + "1" + " | " + uniikkiID ;
     }
 }
 

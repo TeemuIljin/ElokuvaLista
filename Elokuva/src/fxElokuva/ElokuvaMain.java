@@ -17,8 +17,7 @@ import fxElokuva.Elokuva;
  * @version 4.3.2024
  * Mainiin luodaan sisältöä
  * Esimerkiksi lista luodaan ja sen alkioksi asetetaan harri ja sen tietoja
- * Nämä tiedot printataan ohjelman alussa
- * Liittää guihin guiviewin
+ * Tiedostot luetaan muualla
  */
 public class ElokuvaMain extends Application {
     static Elokuvakanta kanta = new Elokuvakanta();
@@ -35,14 +34,6 @@ public class ElokuvaMain extends Application {
             primaryStage.show();
 
 
-            /**
-             * @author teemuiljin
-             * @version 4.3.2024
-             * Mainissa luetaan genret.dat ja elokuvat.dat
-             */
-
-            kanta.getElokuvalista().lueTiedostosta();
-            kanta.getGenret().lueTiedostosta("Tiedostot/Genret.dat");
 
 
         } catch (Exception e) {

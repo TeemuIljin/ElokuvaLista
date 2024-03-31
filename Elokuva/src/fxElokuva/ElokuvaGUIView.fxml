@@ -57,7 +57,7 @@
                   <Button layoutX="421.0" layoutY="26.0" mnemonicParsing="false" onAction="#lisaysleffa" prefHeight="26.0" prefWidth="93.0" style="-fx-background-color: yellow;" text="Lisää elokuva" />
                   <Button layoutX="14.0" layoutY="26.0" mnemonicParsing="false" onAction="#Lopeta" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: yellow;" text="lopeta" />
                   <Button layoutX="527.0" layoutY="26.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="99.0" style="-fx-background-color: yellow;" text="Poista elokuva" />
-                  <Button layoutX="255.0" layoutY="26.0" mnemonicParsing="false" onAction="#lisays2" style="-fx-background-color: yellow;" text="lisää genre" />
+                  <Button layoutX="255.0" layoutY="26.0" mnemonicParsing="false" onAction="#lisaysgenre" style="-fx-background-color: yellow;" text="lisää genre" />
                   <ToggleButton layoutX="164.0" layoutY="26.0" mnemonicParsing="false" onAction="#paivatila" prefHeight="27.0" prefWidth="71.0" style="-fx-background-color: cyan;" text="Päivätila">
                      <font>
                         <Font size="14.0" />

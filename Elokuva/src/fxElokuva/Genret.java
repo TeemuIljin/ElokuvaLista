@@ -14,6 +14,15 @@ import java.util.Optional;
 public class Genret {
     private Genre genre[] = new Genre[10];
     private int lkm = 0;
+
+    public boolean OnkoMuutettu() {
+        return muutettu;
+    }
+
+    public void Muutettu() {
+        muutettu = true;
+    }
+
     /**
      * @author teemuiljin
      * muutettu atribuutti tarpeen määritystä varten 19.3
@@ -25,6 +34,10 @@ public class Genret {
     public void lisaa(Genre genre) {
         this.genre[lkm] = genre;
         lkm++;
+        Muutettu();
+    }
+    public int getLkm() {
+        return lkm;
     }
     /**
      * @author teemuiljin
@@ -37,57 +50,61 @@ public class Genret {
 
     /**
      * @author teemuiljin
-     * luodaan pari yksinkertaista elokuvaa ja asetetaan niille tiedot
+     * Konstruktori
      */
 
     public Genret() {
-        Genre hp = new Genre("fantasia", "tutkimusmatka");
-        Genre sc4 = new Genre("kauhu", "pelkoa");
-        Genre t2 = new Genre("toiminta", "paukkumista");
-
-        lisaa(hp);
-        lisaa(sc4);
-        lisaa(t2);
     }
 
     /**
      * @author teemuiljin
-     * pystytään lukemaan tiedostoa 19.3
+     * pystytään tallentamaan tiedosto 31.3 /tallenna)
      */
 
-    public static Genret lueTiedostosta(String tiedosto) throws IOException, SailoException {
-        Genret genret = new Genret();
-        BufferedReader reader = new BufferedReader(new FileReader(tiedosto));
+    public void tallenna() throws SailoException {
+        if ( !OnkoMuutettu() ) return;
+
+        File fbak = new File("Tiedostot/Genret.bak");
+        File ftied = new File("Tiedostot/Genret.dat");
+        fbak.delete(); // if .. System.err.println("Ei voi tuhota");
+        ftied.renameTo(fbak); // if .. System.err.println("Ei voi nimetä");
+
+        try ( PrintWriter fo = new PrintWriter(new FileWriter(ftied.getCanonicalPath())) ) {
+
+            for (int i = 0; i<lkm ; i++) {
+                fo.println(genre[i].toString());
+            }
+            //} catch ( IOException e ) { // ei heitä poikkeusta
+            //  throw new SailoException("Tallettamisessa ongelmia: " + e.getMessage());
+        } catch ( FileNotFoundException ex ) {
+            throw new SailoException("Tiedosto " + ftied.getName() + " ei aukea");
+        } catch ( IOException ex ) {
+            throw new SailoException("Tiedoston " + ftied.getName() + " kirjoittamisessa ongelmia");
+        }
+
+        Muutettu();
+    }
+
+
+    /**
+     * @author teemuiljin
+     * Luetiedostosta 31.3
+     */
+
+    public void lueTiedostosta() throws IOException, SailoException {
+
+        BufferedReader reader = new BufferedReader(new FileReader("Tiedostot/Genret.dat"));
         String line;
-
-
-        String kokonimi = reader.readLine();
-        if (kokonimi == null) throw new SailoException("Kokkikirjan nimi puuttuu");
-        String rivi = reader.readLine();
-        if (rivi == null) throw new SailoException("Maksimikoko puuttuu");
 
 
         while ((line = reader.readLine()) != null) {
             Genre genre = Genre.parse(line);
-            genret.lisaa(genre);
+            lisaa(genre);
         }
         reader.close();
-        return genret;
+        return;
     }
 
-
-
-    /**
-     * @author teemuiljin
-     * Tiedoston talletus periaatteessa mahdollista 19.3
-     */
-    public void talletaTiedostoon(String tiedosto) throws IOException {
-        PrintStream out = new PrintStream(tiedosto);
-        for (int i = 0; i < lkm; i++) {
-            out.println(genre[i].toString());
-        }
-        out.close();
-    }
 
 
 }

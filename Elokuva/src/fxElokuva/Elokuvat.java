@@ -29,6 +29,9 @@ public class Elokuvat {
         public void Muutettu() {
             muutettu = true;
         }
+        public int GetLkm () {
+            return lkm;
+}
 
         public boolean OnkoMuutettu() {
             return muutettu;
@@ -59,14 +62,14 @@ public class Elokuvat {
          */
 
         public void lueTiedostosta() throws IOException, SailoException {
-            Elokuvat elokuvat = new Elokuvat();
+
             BufferedReader reader = new BufferedReader(new FileReader("Tiedostot/Elokuvat.dat"));
             String line;
 
 
             while ((line = reader.readLine()) != null) {
                 Elokuva elokuva = Elokuva.parse(line);
-                elokuvat.lisaa(elokuva);
+                lisaa(elokuva);
             }
             reader.close();
             return;
@@ -82,7 +85,7 @@ public class Elokuvat {
 
             try ( PrintWriter fo = new PrintWriter(new FileWriter(ftied.getCanonicalPath())) ) {
 
-                for (int i = 0; i<10 ; i++) {
+                for (int i = 0; i<lkm ; i++) {
                     fo.println(elokuva[i].toString());
                 }
                 //} catch ( IOException e ) { // ei heitä poikkeusta

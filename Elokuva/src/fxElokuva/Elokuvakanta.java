@@ -11,6 +11,11 @@ import java.io.IOException;
 
 public class Elokuvakanta {
 
+    /**
+     * @author teemuiljin
+     * Alustukset
+     */
+
     private Elokuvat elokuvalista = new Elokuvat();
     private Genret genret = new Genret();
 
@@ -24,14 +29,46 @@ public class Elokuvakanta {
 
     /**
      * @author teemuiljin
-     * TalletaElokuvat menee guihin kannan kautta tein try/catchin 19.3
+     * TalletaElokuvat menee guihin kannan kautta
      */
     public void talletaElokuvat() throws SailoException {
        elokuvalista.tallenna();
     }
 
+    /**
+     * @author teemuiljin
+     * TalletaGenret menee guihin kannan kautta
+     */
+
+    public void talletaGenret() throws SailoException {
+        genret.tallenna();
+    }
+
+
+    /**
+     * @author teemuiljin
+     * Lukee elokuvat alempaata
+     */
+
+
     public void LueElokuvat() throws SailoException, IOException {
         elokuvalista.lueTiedostosta();
     }
+    /**
+     * @author teemuiljin
+     * Lukee genret alempaata
+     */
 
+    public void LueGenret() throws SailoException, IOException {
+        genret.lueTiedostosta();
+    }
+
+    /**
+     * @author teemuiljin
+     * Konstruktori
+     */
+
+    Elokuvakanta() {
+
+    }
 }
