@@ -1,6 +1,7 @@
 package fxElokuva;
 
 import fi.jyu.mit.ohj2.Mjonot;
+import javafx.scene.Node;
 
 /**
  * @author teemuiljin
@@ -8,7 +9,7 @@ import fi.jyu.mit.ohj2.Mjonot;
  * (EI TARVITSE MAINIA)
  */
 
-public class Elokuva {
+public class Elokuva extends Node {
 
     /**
      * @author teemuiljin
@@ -95,11 +96,16 @@ public class Elokuva {
 
 
     /**
-     * Tostring tehty 19.3
+     * Tostring korjattu 2.4
      */
     @Override
     public String toString() {
         return nimi + " | " + imdb + " | " + pituus + " | " + "1" + " | " + uniikkiID ;
+    }
+
+    @Override
+    public Node getStyleableNode() {
+        return super.getStyleableNode();
     }
 }
 

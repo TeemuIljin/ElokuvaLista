@@ -12,7 +12,7 @@ import java.util.Optional;
  */
 
 public class Genret {
-    private Genre genre[] = new Genre[10];
+    private Genre genre[] = new Genre[20];
     private int lkm = 0;
 
     public boolean OnkoMuutettu() {

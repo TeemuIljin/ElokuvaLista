@@ -41,7 +41,7 @@ public class Genre {
      * eli tostring!
      */
     public String tietojaGenre() {
-        return " Tiedot: " + genrekuvaus + "| Genre: " + genrenimi +  "| Genren ID: " + uniikkiID ;
+        return " Tiedot: " + genrekuvaus + ", Genre: " + genrenimi +  ", Genren ID: " + uniikkiID ;
     }
 
     /**
@@ -71,5 +71,4 @@ public class Genre {
     public String toString() {
         return genrekuvaus + "|" + genrenimi + "|" + uniikkiID;
     }
-
 }

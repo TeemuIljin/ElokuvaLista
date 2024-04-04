@@ -21,7 +21,11 @@ import javafx.scene.control.ListView;
 import java.io.IOException;
 import java.util.Optional;
 
+import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
+
+import fi.jyu.mit.fxgui.*;
+
 
 
 //ohjelmat
@@ -38,6 +42,7 @@ public class ElokuvaGUIController {
 
 
     //listview alustetaan
+    @FXML private TextField hakukentta;
 
     @FXML private ListView elokuvatop;
 
@@ -178,21 +183,25 @@ public class ElokuvaGUIController {
 
     @FXML
     private void lisaysleffa() {
-        TextInputDialog dialog = new TextInputDialog("Lisää elokuva");
-        dialog.setHeaderText(null);
-        dialog.setTitle("Vastaa");
-        dialog.setContentText("Elokuvan nimi:");
-        Optional<String> answer = dialog.showAndWait();
-        System.out.println(answer.isPresent() ? answer.get() : "Ei ollut vastausta");
+
+        Elokuva hpuusi = new Elokuva("", "9.8", "1", "");
+        hpuusi = ModalController.showModal(ElokuvalisaaController.class.getResource("Elokuvalisää.fxml"),
+                "Lisää elokuva", null,hpuusi );
+        //TextInputDialog dialog = new TextInputDialog("Lisää elokuva");
+        //dialog.setHeaderText(null);
+        //dialog.setTitle("Vastaa");
+        //dialog.setContentText("Elokuvan nimi:");
+        //Optional<String> answer = dialog.showAndWait();
+        //System.out.println(answer.isPresent() ? answer.get() : "Ei ollut vastausta");
 
         // hakee valitun genren elokuvatop2 listasta
-        String selectedGenre = (String) elokuvatop2.getSelectionModel().getSelectedItem();
+        //String selectedGenre = (String) elokuvatop2.getSelectionModel().getSelectedItem();
 
         // luo uuden elokuvan sillä genre-id:llä
-        Elokuva hpuusi = new Elokuva(selectedGenre, answer.orElse(""), "9.8", "1");
+        //Elokuva hpuusi = new Elokuva(selectedGenre, answer.orElse(""), "9.8", "1");
 
         // lisää uuden leffan listaan (ekannan kautta)
-        ElokuvaMain.kanta.getElokuvalista().lisaa(hpuusi);
+        //ElokuvaMain.kanta.getElokuvalista().lisaa(hpuusi);
         items.add(hpuusi.tietojaElokuva());
     }
 
@@ -224,12 +233,43 @@ public class ElokuvaGUIController {
 
     /**
      * @author teemuiljin
-     * Elokuvien poisto listasta (ei vielä tehty)
+     * Elokuvien poisto listasta 2.4
      * (listan muokkaus)
      */
 
-    public static void poista() {
-        
+    @FXML
+    private void poistaElokuva() {
+        // Haetaan valittu elokuva listalta
+        String selectedElokuva = (String) elokuvatop.getSelectionModel().getSelectedItem();
+
+        // Käydään läpi elokuvat ja etsitään poistettava elokuva
+        for (Elokuva elokuva : ElokuvaMain.kanta.getElokuvalista().getElokuvat()) {
+            if (elokuva.tietojaElokuva().equals(selectedElokuva)) {
+                // Poistetaan elokuva listalta
+                ElokuvaMain.kanta.getElokuvalista().poista(elokuva);
+                items.remove(selectedElokuva);
+                break; // Poistetaan vain yksi elokuva, jos niitä olisi useampia
+            }
+        }
+    }
+
+    /**
+     * @author teemuiljin
+     * Elokuvien haku mahdollista 2.4
+     * (listan muokkaus)
+     */
+
+    @FXML
+    private void haeElokuva() {
+        String hakusana = hakukentta.getText().toLowerCase(); // Hae hakusana tekstikentästä
+        items.clear(); // Tyhjennä näytettävä lista
+
+        // Käy läpi kaikki elokuvat ja lisää ne listaan, jos ne sisältävät hakusanan
+        for (Elokuva elokuva : ElokuvaMain.kanta.getElokuvalista().getElokuvat()) {
+            if (elokuva.tietojaElokuva().toLowerCase().contains(hakusana)) {
+                items.add(elokuva.tietojaElokuva());
+            }
+        }
     }
 
 }

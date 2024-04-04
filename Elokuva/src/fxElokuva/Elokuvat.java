@@ -17,7 +17,7 @@ public class Elokuvat {
          * alustetaan elokuvalista
          * tehdään lkm jolloin lista dynaamisempi ja ei tarvitse foria
          */
-        private Elokuva elokuva[] = new Elokuva[10];
+        private Elokuva elokuva[] = new Elokuva[20];
         private boolean muutettu = false;
         private int lkm = 0;
 
@@ -99,10 +99,32 @@ public class Elokuvat {
             Muutettu();
         }
 
+    /**
+     * @author teemuiljin
+     * Poistaa elokuvan 2.4
+     */
+
+    public void poista(Elokuva elokuva) {
+        int indeksi = -1;
+        // Etsi poistettavan elokuvan indeksi
+        for (int i = 0; i < lkm; i++) {
+            if (this.elokuva[i].equals(elokuva)) {
+                indeksi = i;
+                break;
+            }
+        }
+        // Jos elokuva löytyi, poista se ja siirrä loput elementit ylöspäin
+        if (indeksi != -1) {
+            for (int i = indeksi; i < lkm - 1; i++) {
+                this.elokuva[i] = this.elokuva[i + 1];
+            }
+            lkm--;
+            Muutettu();
+        }
+    }
 
 
-
-        /**
+    /**
          * @author teemuiljin
          * Tallentaa tieodstoon 19.3
          */
