@@ -215,19 +215,24 @@ public class ElokuvaGUIController {
      */
     @FXML
     private void lisaysgenre() {
-        TextInputDialog dialog = new TextInputDialog("Genre");
-        dialog.setHeaderText(null);
-        dialog.setTitle("Vastaa");
-        dialog.setContentText("Genresi nimi:");
-        Optional<String> answer = dialog.showAndWait();
-        System.out.println(answer.isPresent() ?
-                answer.get() : "Ei ollut vastausta");
+
+        Genre hpuusi2 = new Genre("komedia", "hauskuutta", 1);
+        hpuusi2 = ModalController.showModal(GenrelisaaController.class.getResource("Genrelisää.fxml"),
+                "Lisää genre", null,hpuusi2 );
+
+        //TextInputDialog dialog = new TextInputDialog("Genre");
+        //dialog.setHeaderText(null);
+        //dialog.setTitle("Vastaa");
+        //dialog.setContentText("Genresi nimi:");
+        //Optional<String> answer = dialog.showAndWait();
+        //System.out.println(answer.isPresent() ?
+                //answer.get() : "Ei ollut vastausta");
 
 
 
         //Ekannan kautta guihin
-        Genre hpuusi2 = new Genre(answer.toString(), "Genresi kuvaus");
-        ElokuvaMain.kanta.getGenret().lisaa(hpuusi2);
+        //Genre hpuusi2 = new Genre(answer.toString(), "Genresi kuvaus");
+        //ElokuvaMain.kanta.getGenret().lisaa(hpuusi2);
         items2.add(hpuusi2.tietojaGenre());
     }
 
