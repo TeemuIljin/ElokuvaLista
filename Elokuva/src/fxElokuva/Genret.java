@@ -4,6 +4,9 @@ import fxElokuva.Genre;
 
 import java.io.*;
 import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 
 /**
@@ -12,8 +15,7 @@ import java.util.Optional;
  */
 
 public class Genret {
-    private Genre genre[] = new Genre[20];
-    private int lkm = 0;
+    private List<Genre> genres = new ArrayList<>();
 
     public boolean OnkoMuutettu() {
         return muutettu;
@@ -32,22 +34,20 @@ public class Genret {
 
 
     public void lisaa(Genre genre) {
-        this.genre[lkm] = genre;
-        lkm++;
+        genres.add(genre);
         Muutettu();
     }
     public int getLkm() {
-        return lkm;
+        return genres.size();
     }
     /**
      * @author teemuiljin
      * Peursgetteri, jota kutsutaan myöhemmin
      */
 
-    public Genre[] getGenre() {
-        return genre;
+    public List<Genre> getGenres() {
+        return genres;
     }
-
     /**
      * @author teemuiljin
      * Konstruktori
@@ -71,8 +71,8 @@ public class Genret {
 
         try ( PrintWriter fo = new PrintWriter(new FileWriter(ftied.getCanonicalPath())) ) {
 
-            for (int i = 0; i<lkm ; i++) {
-                fo.println(genre[i].toString());
+            for (Genre genre : genres) {
+                fo.println(genre.toString());
             }
             //} catch ( IOException e ) { // ei heitä poikkeusta
             //  throw new SailoException("Tallettamisessa ongelmia: " + e.getMessage());

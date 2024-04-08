@@ -1,6 +1,5 @@
 package fxElokuva;
 
-import fi.jyu.mit.ohj2.Mjonot;
 import javafx.scene.Node;
 
 /**
@@ -16,7 +15,7 @@ public class Elokuva extends Node {
      * Ensin alustetaan tiedot elokuville (attribuutit)
      */
 
-    private static int seuraavaID = 1;
+
 
     private int uniikkiID;
 
@@ -28,44 +27,14 @@ public class Elokuva extends Node {
 
     private String genre;
 
-    public Elokuva(String nimi, String imdb, String pituus, String genre, int id) {
+    public Elokuva(String nimi, String imdb, String pituus, String genre, String id) {
         this.nimi = nimi;
         this.genre = genre;
         this.imdb = imdb;
         this.pituus = pituus;
-        this.uniikkiID = id;
+        this.uniikkiID = Integer.parseInt(id);
     }
 
-    public int getUniikkiID() {
-        return uniikkiID;
-    }
-
-    /**
-     * @author teemuiljin
-     * Konstruktori jotta ei sekotu ja koodi toimii (linkkausta varten listalle)
-     */
-    public Elokuva(String selectedGenre, String nimi, String imdb, String kenTietää){
-        this.nimi = nimi;
-        this.genre = selectedGenre;
-        this.imdb = imdb;
-        this.pituus = kenTietää;
-        this.uniikkiID = seuraavaID++;
-
-    }
-
-    /**
-     * @author teemuiljin
-     * TÄRKEÄÄ!
-     * Normi konstruktori, jossa elokuva alustetaan käyttöä varten ja tehdään niistä uniikkeja kutsua varten
-     */
-
-    public Elokuva(int genre, String nimi, String imdb, String pituus){
-        this.nimi = nimi;
-        this.imdb = imdb;
-        this.genre = "";
-        this.pituus = pituus;
-        this.uniikkiID = seuraavaID++;
-    }
 
     /**
      * @author teemuiljin
@@ -88,9 +57,9 @@ public class Elokuva extends Node {
         String nimi = parts[0].trim();
         String imdb = parts[1].trim();
         String pituus = parts[2].trim();
-        String ID = parts[3].trim();
-        int id = Integer.parseInt(ID);
-        return new Elokuva(nimi, imdb, pituus, "", id); // Notice that the genre attribute is left empty here
+        String genreid= parts[3].trim();
+        String uniikkiID = parts[4].trim();
+        return new Elokuva(nimi, imdb, pituus, genreid, uniikkiID); // Notice that the genre attribute is left empty here
     }
 
 
@@ -100,7 +69,7 @@ public class Elokuva extends Node {
      */
     @Override
     public String toString() {
-        return nimi + " | " + imdb + " | " + pituus + " | " + "1" + " | " + uniikkiID ;
+        return nimi + " | " + imdb + " | " + pituus + " | " + genre + " | " + uniikkiID ;
     }
 
     @Override

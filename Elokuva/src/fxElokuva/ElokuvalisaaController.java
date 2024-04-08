@@ -20,7 +20,8 @@ public class ElokuvalisaaController implements ModalControllerInterface<Elokuva>
     public void handleShown() {
     }
     public Elokuva getResult() {
-        return new Elokuva("", nimi.getText(), imdb.getText(), pituus.getText());
+        int guid = ElokuvaMain.kanta.getElokuvalista().getElokuvat().size()+1;
+        return new Elokuva(nimi.getText(), imdb.getText(), pituus.getText(), "", Integer.toString(guid));
     }
     public void luoElokuva(){
         ModalController.closeStage(nimi);

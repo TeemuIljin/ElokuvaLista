@@ -1,8 +1,8 @@
-Pelkoa|Kauhu|1
-Taikaa|Fantasia|2
-Aseita|Toiminta|3
-Hauskuutta|Komedia|4
-Juonenkäännöksiä|Draama|5
-hauskuutta|Optional[komedia]|6
-Genresi kuvaus|Optional[Bondi]|1
-Genresi kuvaus|Optional[Moi]|1
+Kauhu|Pelkoa|1
+Fantasia|Taikaa|2
+Toiminta|Aseita|3
+Komedia|Hauskuutta|4
+Draama|Juonenkäännöksiä|5
+Optional[komedia]|hauskuutta|6
+Optional[Bondi]|Genresi kuvaus|1
+Optional[Moi]|Genresi kuvaus|1

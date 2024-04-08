@@ -74,12 +74,15 @@ public class ElokuvaGUIController {
         elokuvatop.setItems(items);
 
         //silmukoilla luku
-       for (int i = 0; i < ElokuvaMain.kanta.getElokuvalista().GetLkm(); i++)  {
-             items.add(String.valueOf(ElokuvaMain.kanta.getElokuvalista().getElokuvat()[i].tietojaElokuva()));
-       }
+        for (Elokuva elokuva : ElokuvaMain.kanta.getElokuvalista().getElokuvat()) {
+            items.add(elokuva.tietojaElokuva());
+        }
+       //for (int i = 0; i < ElokuvaMain.kanta.getElokuvalista().GetLkm(); i++)  {
+             //items.add(String.valueOf(ElokuvaMain.kanta.getElokuvalista().getElokuvat()[i].tietojaElokuva()));
+       //}
 
         for (int i = 0; i < ElokuvaMain.kanta.getGenret().getLkm(); i++)  {
-              items2.add(String.valueOf(ElokuvaMain.kanta.getGenret().getGenre()[i].tietojaGenre()));
+              items2.add(String.valueOf(ElokuvaMain.kanta.getGenret().getGenres().get(i).tietojaGenre()));
         }
 
     }
@@ -183,8 +186,7 @@ public class ElokuvaGUIController {
 
     @FXML
     private void lisaysleffa() {
-
-        Elokuva hpuusi = new Elokuva("", "9.8", "1", "");
+        Elokuva hpuusi = new Elokuva("", "9.8", "1", "", "1");
         hpuusi = ModalController.showModal(ElokuvalisaaController.class.getResource("Elokuvalisää.fxml"),
                 "Lisää elokuva", null,hpuusi );
         //TextInputDialog dialog = new TextInputDialog("Lisää elokuva");
@@ -201,7 +203,7 @@ public class ElokuvaGUIController {
         //Elokuva hpuusi = new Elokuva(selectedGenre, answer.orElse(""), "9.8", "1");
 
         // lisää uuden leffan listaan (ekannan kautta)
-        //ElokuvaMain.kanta.getElokuvalista().lisaa(hpuusi);
+        ElokuvaMain.kanta.getElokuvalista().lisaa(hpuusi);
         items.add(hpuusi.tietojaElokuva());
     }
 
@@ -276,7 +278,13 @@ public class ElokuvaGUIController {
             }
         }
     }
-
+    @FXML
+    private void Tyhjenna() {
+        hakukentta.clear();
+        for (Elokuva elokuva : ElokuvaMain.kanta.getElokuvalista().getElokuvat()) {
+            items.add(elokuva.tietojaElokuva());
+        }
+    }
 }
 
 

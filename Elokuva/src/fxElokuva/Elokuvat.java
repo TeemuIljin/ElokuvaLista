@@ -17,7 +17,9 @@ public class Elokuvat {
          * alustetaan elokuvalista
          * tehdään lkm jolloin lista dynaamisempi ja ei tarvitse foria
          */
-        private Elokuva elokuva[] = new Elokuva[20];
+        private List<Elokuva> elokuvat = new ArrayList<Elokuva>();
+
+        //private Elokuva elokuva[] = new Elokuva[20];
         private boolean muutettu = false;
         private int lkm = 0;
 
@@ -37,8 +39,7 @@ public class Elokuvat {
             return muutettu;
         }
         public void lisaa(Elokuva elokuva){
-            this.elokuva[lkm] = elokuva;
-            lkm++;
+            elokuvat.add(elokuva);
             Muutettu();
         }
 
@@ -49,8 +50,8 @@ public class Elokuvat {
          * getteri tehty lisäksi jota kutsutaan myöhemmin
          */
 
-        public Elokuva[] getElokuvat() {
-            return elokuva;
+        public List<Elokuva> getElokuvat() {
+            return elokuvat;
         }
 
         public Elokuvat(){
@@ -85,8 +86,8 @@ public class Elokuvat {
 
             try ( PrintWriter fo = new PrintWriter(new FileWriter(ftied.getCanonicalPath())) ) {
 
-                for (int i = 0; i<lkm ; i++) {
-                    fo.println(elokuva[i].toString());
+                for (Elokuva elokuva : elokuvat) {
+                    fo.println(elokuva.toString());
                 }
                 //} catch ( IOException e ) { // ei heitä poikkeusta
                 //  throw new SailoException("Tallettamisessa ongelmia: " + e.getMessage());
@@ -105,36 +106,10 @@ public class Elokuvat {
      */
 
     public void poista(Elokuva elokuva) {
-        int indeksi = -1;
-        // Etsi poistettavan elokuvan indeksi
-        for (int i = 0; i < lkm; i++) {
-            if (this.elokuva[i].equals(elokuva)) {
-                indeksi = i;
-                break;
-            }
-        }
-        // Jos elokuva löytyi, poista se ja siirrä loput elementit ylöspäin
-        if (indeksi != -1) {
-            for (int i = indeksi; i < lkm - 1; i++) {
-                this.elokuva[i] = this.elokuva[i + 1];
-            }
-            lkm--;
-            Muutettu();
-        }
+        elokuvat.remove(elokuva);
+        lkm--;
+        Muutettu();
     }
-
-
-    /**
-         * @author teemuiljin
-         * Tallentaa tieodstoon 19.3
-         */
-
-        /**
-         * @author teemuiljin
-         * Attribuutti pitää kirjaa tiedon säilyttämisen tarpeesta 19.3
-         */
-
-
-    }
+}
 
 
