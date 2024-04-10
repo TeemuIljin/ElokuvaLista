@@ -105,6 +105,9 @@ public class Genret {
         return;
     }
 
-
+    public void poista(Genre genre) {
+        genres.remove(genre);
+        Muutettu();
+    }
 
 }

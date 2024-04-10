@@ -71,4 +71,16 @@ public class Genre {
     public String toString() {
         return genrekuvaus + "|" + genrenimi + "|" + uniikkiID;
     }
+
+    public String getGenrenimi() {
+        return genrenimi;
+    }
+
+    public int getUniikkiID() {
+        return 0;
+    }
+
+    public String getGenrekuvaus() {
+        return genrekuvaus;
+    }
 }

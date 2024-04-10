@@ -76,6 +76,26 @@ public class Elokuva extends Node {
     public Node getStyleableNode() {
         return super.getStyleableNode();
     }
+
+    public String getNimi() {
+        return nimi;
+    }
+
+    public String getImdb() {
+        return imdb;
+    }
+
+    public String getPituus() {
+        return pituus;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public int getUniikkiID() {
+        return uniikkiID;
+    }
 }
 
 

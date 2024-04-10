@@ -1,8 +1,6 @@
-Kauhu|Pelkoa|1
-Fantasia|Taikaa|2
-Toiminta|Aseita|3
-Komedia|Hauskuutta|4
-Draama|Juonenkäännöksiä|5
-Optional[komedia]|hauskuutta|6
-Optional[Bondi]|Genresi kuvaus|1
-Optional[Moi]|Genresi kuvaus|1
+Toiminta|pamauksia|1
+Komedia|hauska|2
+Fantasia|lohikäärmeitä|3
+Mukavuus|rentoa|4
+teme|teme|1
+koomis|Komedia|1
