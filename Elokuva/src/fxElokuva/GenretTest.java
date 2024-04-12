@@ -23,7 +23,6 @@ class GenretTest {
         genret.lisaa(genre);
         assertEquals(1, genret.getLkm());
     }
-
     @Test
     void testOnkoMuutettu() {
         assertFalse(genret.OnkoMuutettu());

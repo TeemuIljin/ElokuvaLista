@@ -19,7 +19,6 @@ public class Elokuvat {
          */
         private List<Elokuva> elokuvat = new ArrayList<Elokuva>();
 
-        //private Elokuva elokuva[] = new Elokuva[20];
         private boolean muutettu = false;
         private int lkm = 0;
 
@@ -67,7 +66,6 @@ public class Elokuvat {
             BufferedReader reader = new BufferedReader(new FileReader("Tiedostot/Elokuvat.dat"));
             String line;
 
-
             while ((line = reader.readLine()) != null) {
                 Elokuva elokuva = Elokuva.parse(line);
                 lisaa(elokuva);
@@ -104,7 +102,6 @@ public class Elokuvat {
      * @author teemuiljin
      * Poistaa elokuvan 2.4
      */
-
     public void poista(Elokuva elokuva) {
         elokuvat.remove(elokuva);
         lkm--;

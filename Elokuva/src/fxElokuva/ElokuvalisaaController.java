@@ -1,34 +1,57 @@
 package fxElokuva;
 
+import fi.jyu.mit.fxgui.ModalController;
 import fi.jyu.mit.fxgui.ModalControllerInterface;
+import fxElokuva.Elokuva;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import fi.jyu.mit.fxgui.*;
+import fxElokuva.Genre;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ElokuvalisaaController implements ModalControllerInterface<Elokuva> {
 
     @FXML private TextField nimi;
     @FXML private TextField imdb;
     @FXML private TextField pituus;
-    @FXML private ChoiceBox genre;
-
+    @FXML private ChoiceBox<Genre> genre;
 
 
     public void setDefault(Elokuva oletus) {
-
+        //genre.setItems(ElokuvaMain.kanta.getGenret().getGenres());
+        ObservableList<Genre> ti = FXCollections.observableArrayList();
+        ti = FXCollections.observableList(ElokuvaMain.kanta.getGenret().getGenres());
+        genre.setItems(ti);
     }
 
-    public ChoiceBox getGenre() {
-        return genre;
+    public void setGenres(ObservableList<Genre> genret) {
+        genre.setItems(genret); // Asetan genret ChoiceBoxiin
     }
 
     public void handleShown() {
+
     }
+    /**
+     * @author teemuiljin
+     * palautan tiedot, genren id ja uniikin id jokaiselle leffalle
+     */
+
     public Elokuva getResult() {
-        int guid = ElokuvaMain.kanta.getElokuvalista().getElokuvat().size()+1;
-        return new Elokuva(nimi.getText(), imdb.getText(), pituus.getText(), "", Integer.toString(guid));
+        int guid = ElokuvaMain.kanta.getElokuvalista().getElokuvat().size() + 1;
+
+        Genre genre1 = genre.getSelectionModel().getSelectedItem();
+
+        String genreID = Integer.toString(genre1.getUniikkiID());
+
+        return new Elokuva(nimi.getText(), imdb.getText(), pituus.getText(), genreID, Integer.toString(guid));
     }
 
     public void luoElokuva(){
@@ -42,17 +65,14 @@ public class ElokuvalisaaController implements ModalControllerInterface<Elokuva>
     private boolean isValidInput() {
         String nimiText = nimi.getText();
         String imdbText = imdb.getText();
-
         if (nimiText.isEmpty() || imdbText.isEmpty()) {
             // Palautan false, jos nimi tai IMDB-arvo on tyhjä
             return false;
         }
 
         if (!imdbText.matches("[0-9.]+")) {
-
             return false;
         }
-
         return true;
     }
 
@@ -63,5 +83,4 @@ public class ElokuvalisaaController implements ModalControllerInterface<Elokuva>
         alert.setContentText(viesti);
         alert.showAndWait();
     }
-
 }

@@ -12,7 +12,6 @@ class ElokuvaTest {
         String expected = " Nimi: Pulp Fiction, imdb: 8.9, Kesto: 2h 34min, genre: Draama, ID: 1";
         assertEquals(expected, elokuva.tietojaElokuva());
     }
-
     @Test
     void testParse() {
         String data = "Inception|8.8|2h 28min|Toiminta|2";

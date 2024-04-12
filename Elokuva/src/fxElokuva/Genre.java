@@ -8,9 +8,6 @@ import fi.jyu.mit.ohj2.Mjonot;
  */
 public class Genre {
 
-
-     // genreille kuvaukset, tunnusnumero ja genre tietysti
-
     private static int seuraavaID = 1;
 
     private int uniikkiID;
@@ -72,12 +69,17 @@ public class Genre {
         return genrekuvaus + "|" + genrenimi + "|" + uniikkiID;
     }
 
+    /**
+     * @author teemuiljin
+     * getterit muualle
+     */
+
     public String getGenrenimi() {
         return genrenimi;
     }
 
     public int getUniikkiID() {
-        return 0;
+        return uniikkiID;
     }
 
     public String getGenrekuvaus() {

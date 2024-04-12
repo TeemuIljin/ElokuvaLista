@@ -13,12 +13,15 @@ public class Elokuvakanta {
 
     /**
      * @author teemuiljin
-     * Alustukset
+     * Alustukset listoille
      */
-
     private Elokuvat elokuvalista = new Elokuvat();
     private Genret genret = new Genret();
 
+    /**
+     * @author teemuiljin
+     * Getterit kaikelle
+     */
     public Elokuvat getElokuvalista() {
         return elokuvalista;
 

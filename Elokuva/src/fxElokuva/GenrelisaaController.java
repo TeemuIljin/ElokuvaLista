@@ -11,28 +11,18 @@ public class GenrelisaaController implements ModalControllerInterface<Genre>{
     @FXML private TextField genrekuvaus;
     @FXML private TextField genrenimi;
 
-
-    /**
-     * @author teemuiljin
-     * alustettu nappulat ja liitettu fxml tiedosto controlleriin
-     */
     @Override
     public Genre getResult() {
-        return new Genre(genrenimi.getText(), genrekuvaus.getText());
+        int guid = ElokuvaMain.kanta.getGenret().getGenres().size() + 1;
+        return new Genre(genrenimi.getText(), genrekuvaus.getText(), guid);
     }
 
     @Override
     public void setDefault(Genre genre) {
-
     }
 
     @Override
     public void handleShown() {
-
-        /**
-         * @author teemuiljin
-         * Palauttaa luodun genren listaan
-         */
     }
 
     public void luoGenre(){
@@ -51,7 +41,7 @@ public class GenrelisaaController implements ModalControllerInterface<Genre>{
             return false;
         }
 
-        // Lisää tarkistuksia tarvittaessa
+        // Lisää tarkistuksia jos haluan
 
         return true;
     }

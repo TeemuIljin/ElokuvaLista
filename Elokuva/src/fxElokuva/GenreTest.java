@@ -12,7 +12,6 @@ class GenreTest {
         String expected = " Tiedot: Tämä on draaman kuvaus, Genre: Draama, Genren ID: 1";
         assertEquals(expected, genre.tietojaGenre());
     }
-
     @Test
     void testParse() {
         String data = "Toiminta|Toimintaelokuvien kuvaus|2";

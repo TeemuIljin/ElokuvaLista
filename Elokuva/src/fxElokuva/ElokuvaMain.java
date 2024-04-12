@@ -9,9 +9,6 @@ import javafx.fxml.FXMLLoader;
 //elokuva
 import fxElokuva.Elokuva;
 
-
-
-
 /**
  * @author teemuiljin
  * @version 4.3.2024
@@ -33,9 +30,6 @@ public class ElokuvaMain extends Application {
             primaryStage.setTitle("Elokuva");
             primaryStage.show();
 
-
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -49,7 +43,5 @@ public class ElokuvaMain extends Application {
 
     public static void main(String[] args) {
         launch(args);
-
-
     }
 }

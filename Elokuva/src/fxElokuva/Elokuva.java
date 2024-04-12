@@ -15,8 +15,6 @@ public class Elokuva extends Node {
      * Ensin alustetaan tiedot elokuville (attribuutit)
      */
 
-
-
     private int uniikkiID;
 
     private String nimi;
@@ -35,12 +33,10 @@ public class Elokuva extends Node {
         this.uniikkiID = Integer.parseInt(id);
     }
 
-
     /**
      * @author teemuiljin
      * tietoja elokuvista eteenpäin elokvat.javaa varten (käytetään myöhemmin eli kutsutaan ylempänä Elokuvat.java)
      */
-
 
     public String tietojaElokuva() {
         return " Nimi: " + nimi +  ", imdb: " + imdb + ", Kesto: " + pituus + ", genre: " + genre + ", ID: " + uniikkiID;
@@ -61,8 +57,6 @@ public class Elokuva extends Node {
         String uniikkiID = parts[4].trim();
         return new Elokuva(nimi, imdb, pituus, genreid, uniikkiID); // Notice that the genre attribute is left empty here
     }
-
-
 
     /**
      * Tostring korjattu 2.4

@@ -18,7 +18,7 @@ class ElokuvatTest {
 
     @Test
     void testLisaaJaGetLkm() {
-        Elokuva elokuva = new Elokuva("Elokuva 1", "7.7", "2h 30m", "Draama", "1");
+        Elokuva elokuva = new Elokuva("Elokuva 1", "7.7", "2h 30m", "toiminta", "1");
         elokuvat.lisaa(elokuva);
         assertEquals(0, elokuvat.GetLkm());
     }
@@ -29,8 +29,6 @@ class ElokuvatTest {
         elokuvat.Muutettu();
         assertTrue(elokuvat.OnkoMuutettu());
     }
-
-
 
     @Test
     void testPoista() {

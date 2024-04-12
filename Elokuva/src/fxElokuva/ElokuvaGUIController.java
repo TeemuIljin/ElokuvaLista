@@ -19,6 +19,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ListView;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 import javafx.scene.control.TextField;
@@ -26,20 +27,14 @@ import javafx.scene.control.TextInputDialog;
 
 import fi.jyu.mit.fxgui.*;
 
-
-
-
 /**
  * @author teemuiljin
  * @version 4.3.2024
- * Kontrolleri, jossa on nappuloiden toiminnot omissa ohjelmissaan
- * Kaikki ohjelmat kommentoitu
+ * Törkein Kontrolleri!
  */
 
 
 public class ElokuvaGUIController {
-
-
 
     @FXML private TextField hakukentta;
 
@@ -52,7 +47,6 @@ public class ElokuvaGUIController {
      * @version 4.3.2024
      * Alustetaan lista elokuvatop, johon voi lisätä pelkällä items.add komennolla
      */
-
 
     private ObservableList<String> items = FXCollections.observableArrayList();
     private ObservableList<String> items2 = FXCollections.observableArrayList();
@@ -76,14 +70,10 @@ public class ElokuvaGUIController {
         for (Elokuva elokuva : ElokuvaMain.kanta.getElokuvalista().getElokuvat()) {
             items.add(elokuva.tietojaElokuva());
         }
-       //for (int i = 0; i < ElokuvaMain.kanta.getElokuvalista().GetLkm(); i++)  {
-             //items.add(String.valueOf(ElokuvaMain.kanta.getElokuvalista().getElokuvat()[i].tietojaElokuva()));
-       //}
 
         for (int i = 0; i < ElokuvaMain.kanta.getGenret().getLkm(); i++)  {
               items2.add(String.valueOf(ElokuvaMain.kanta.getGenret().getGenres().get(i).tietojaGenre()));
         }
-
     }
 
     /**
@@ -119,7 +109,6 @@ public class ElokuvaGUIController {
         Platform.exit();
     }
 
-
     /**
      * @author teemuiljin
      * Elokuvien lisäys listaan ja mahdollisuus tehdä tietyn genren elokuvia
@@ -128,16 +117,15 @@ public class ElokuvaGUIController {
 
     @FXML
     private void lisaysleffa() {
-        Elokuva hpuusi = new Elokuva("", "9.8", "1", "", "1");
+
+
+        Elokuva hpuusi = new Elokuva("", "9.8", "1", "Toiminta", "1");
         hpuusi = ModalController.showModal(ElokuvalisaaController.class.getResource("Elokuvalisää.fxml"),
                 "Lisää elokuva", null,hpuusi );
 
         ElokuvaMain.kanta.getElokuvalista().lisaa(hpuusi);
         items.add(hpuusi.tietojaElokuva());
     }
-
-
-
 
     /**
      * @author teemuiljin
@@ -158,9 +146,7 @@ public class ElokuvaGUIController {
     /**
      * @author teemuiljin
      * Elokuvien poisto listasta
-     * (listan muokkaus)
      */
-
     @FXML
     private void poistaElokuva() {
         // Haetaan valittu elokuva listalta
@@ -182,7 +168,6 @@ public class ElokuvaGUIController {
      * Elokuvien haku mahdollista
      * (listan muokkaus)
      */
-
     @FXML
     private void haeElokuva() {
         String hakusana = hakukentta.getText().toLowerCase(); // Hae hakusana tekstikentästä
