@@ -42,22 +42,22 @@ public class Elokuva extends Node {
         return " Nimi: " + nimi +  ", imdb: " + imdb + ", Kesto: " + pituus + ", genre: " + genre + ", ID: " + uniikkiID;
     }
     /**
-     * Parse korjattu 31.3
+     * Parse toimii oikein
      */
+
     public static Elokuva parse(String data) {
         String[] parts = data.split("\\|");
         if (parts.length < 5) {
-            // Not enough parts to represent a valid movie, return null or throw exception
-            return null; // or throw an exception
+
+            return null;
         }
         String nimi = parts[0].trim();
         String imdb = parts[1].trim();
         String pituus = parts[2].trim();
         String genreid= parts[3].trim();
         String uniikkiID = parts[4].trim();
-        return new Elokuva(nimi, imdb, pituus, genreid, uniikkiID); // Notice that the genre attribute is left empty here
+        return new Elokuva(nimi, imdb, pituus, genreid, uniikkiID);
     }
-
     /**
      * Tostring korjattu 2.4
      */

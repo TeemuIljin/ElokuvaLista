@@ -173,7 +173,7 @@ public class ElokuvaGUIController {
         String hakusana = hakukentta.getText().toLowerCase(); // Hae hakusana tekstikentästä
         items.clear(); // Tyhjennä näytettävä lista
 
-        // Käyn läpi kaikki elokuvat ja lisää ne listaan, jos ne sisältävät hakusanan
+        // Käyn läpi kaikki elokuvat ja lisään ne listaan, jos ne sisältävät hakusanan
         for (Elokuva elokuva : ElokuvaMain.kanta.getElokuvalista().getElokuvat()) {
             if (elokuva.tietojaElokuva().toLowerCase().contains(hakusana)) {
                 items.add(elokuva.tietojaElokuva());

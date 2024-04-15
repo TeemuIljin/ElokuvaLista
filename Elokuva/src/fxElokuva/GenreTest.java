@@ -18,7 +18,7 @@ class GenreTest {
         Genre parsedGenre = Genre.parse(data);
         assertEquals("Toimintaelokuvien kuvaus", parsedGenre.getGenrekuvaus());
         assertEquals("Toiminta", parsedGenre.getGenrenimi());
-        assertEquals(0, parsedGenre.getUniikkiID());
+        assertEquals(2, parsedGenre.getUniikkiID());
     }
 
     @Test

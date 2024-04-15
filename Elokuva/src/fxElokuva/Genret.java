@@ -88,7 +88,7 @@ public class Genret {
 
     /**
      * @author teemuiljin
-     * Luetiedostosta 31.3
+     * Luetiedostosta
      */
 
     public void lueTiedostosta() throws IOException, SailoException {
@@ -104,6 +104,11 @@ public class Genret {
         reader.close();
         return;
     }
+
+    /**
+     * @author teemuiljin
+     * poistaa listasta
+     */
 
     public void poista(Genre genre) {
         genres.remove(genre);

@@ -58,7 +58,7 @@ public class Elokuvat {
 
         /**
          * @author teemuiljin
-         * Lue tiedostosta lukee datan tiedostosta 19.3
+         * Lue tiedostosta lukee datan tiedostosta
          */
 
         public void lueTiedostosta() throws IOException, SailoException {
@@ -73,6 +73,11 @@ public class Elokuvat {
             reader.close();
             return;
         }
+
+    /**
+     * @author teemuiljin
+     * tallentaa dat ja bak avulla
+     */
 
         public void tallenna() throws SailoException {
             if ( !OnkoMuutettu() ) return;
@@ -100,7 +105,7 @@ public class Elokuvat {
 
     /**
      * @author teemuiljin
-     * Poistaa elokuvan 2.4
+     * Poistaa elokuvan
      */
     public void poista(Elokuva elokuva) {
         elokuvat.remove(elokuva);

@@ -73,7 +73,6 @@ public class Genre {
      * @author teemuiljin
      * getterit muualle
      */
-
     public String getGenrenimi() {
         return genrenimi;
     }

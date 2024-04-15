@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ElokuvaTest {
-
     @Test
     void testTietojaElokuva() {
         Elokuva elokuva = new Elokuva("Pulp Fiction", "8.9", "2h 34min", "Draama", "1");

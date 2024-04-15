@@ -25,6 +25,10 @@ public class ElokuvalisaaController implements ModalControllerInterface<Elokuva>
     @FXML private ChoiceBox<Genre> genre;
 
 
+    /**
+     * @author teemuiljin
+     * alustan genret listan
+     */
     public void setDefault(Elokuva oletus) {
         //genre.setItems(ElokuvaMain.kanta.getGenret().getGenres());
         ObservableList<Genre> ti = FXCollections.observableArrayList();
@@ -32,12 +36,7 @@ public class ElokuvalisaaController implements ModalControllerInterface<Elokuva>
         genre.setItems(ti);
     }
 
-    public void setGenres(ObservableList<Genre> genret) {
-        genre.setItems(genret); // Asetan genret ChoiceBoxiin
-    }
-
     public void handleShown() {
-
     }
     /**
      * @author teemuiljin
@@ -53,6 +52,10 @@ public class ElokuvalisaaController implements ModalControllerInterface<Elokuva>
 
         return new Elokuva(nimi.getText(), imdb.getText(), pituus.getText(), genreID, Integer.toString(guid));
     }
+    /**
+     * @author teemuiljin
+     * failsafe ja virheilmoitus
+     */
 
     public void luoElokuva(){
         if (isValidInput()) {

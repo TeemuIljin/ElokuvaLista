@@ -11,6 +11,10 @@ public class GenrelisaaController implements ModalControllerInterface<Genre>{
     @FXML private TextField genrekuvaus;
     @FXML private TextField genrenimi;
 
+    /**
+     * @author teemuiljin
+     * palautan tiedot genreille
+     */
     @Override
     public Genre getResult() {
         int guid = ElokuvaMain.kanta.getGenret().getGenres().size() + 1;
@@ -25,6 +29,10 @@ public class GenrelisaaController implements ModalControllerInterface<Genre>{
     public void handleShown() {
     }
 
+    /**
+     * @author teemuiljin
+     * failsafe ja virheilmoitus
+     */
     public void luoGenre(){
         if (isValidInput()) {
             ModalController.closeStage(genrekuvaus);
