@@ -12,35 +12,38 @@ import javafx.fxml.FXML;
 import javafx.application.Platform;
 
 //alertit yms
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 
 //lista
-import javafx.scene.control.ListView;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
-
 import fi.jyu.mit.fxgui.*;
 
 /**
- * @author teemuiljin
- * @version 4.3.2024
- * Törkein Kontrolleri!
+ * @author teemuiljin Email: teemu.iljin@gmail.com
+ * ElokuvaGuiController luokka, jossa suurin osa toiminnoista
+ * suoritetaan ja kaikki listan toiminta tehdään
+ * (EI TARVITSE MAINIA)
  */
-
-
 public class ElokuvaGUIController {
+
+    /**
+     * @author teemuiljin
+     * alustetaan fxml osat
+     */
 
     @FXML private TextField hakukentta;
 
+    @FXML private TextField ka;
     @FXML private ListView elokuvatop;
 
     @FXML private ListView elokuvatop2;
+
+    @FXML private StringGrid<Elokuva> grid;
 
     /**
      * @author teemuiljin
@@ -51,29 +54,32 @@ public class ElokuvaGUIController {
     private ObservableList<String> items = FXCollections.observableArrayList();
     private ObservableList<String> items2 = FXCollections.observableArrayList();
 
+
     /**
      * initialize suoritetaan kun gui alustetaan. List view komponentille elokuvatop asetetaan
      * observable list (items) elokuvien tietoja käyttäen. Sitten lisätään elokuvat getElokuvat-metodilla (Elokuvat-luokka) ja
      * tietojaElokuvasta-metodilla (Elokuva-luokasta). kaikki yhdistyy ja tulostuu listaan.
+     * teen myös gridin johon lisään silmukalla omiin sarakkeisiin oikeat tiedot.
      */
 
     public void initialize() throws SailoException, IOException {
 
          ElokuvaMain.kanta.LueElokuvat();
          ElokuvaMain.kanta.LueGenret();
-
-        //listojen asetus
         elokuvatop2.setItems(items2);
-        elokuvatop.setItems(items);
-
-        //silmukoilla luku
-        for (Elokuva elokuva : ElokuvaMain.kanta.getElokuvalista().getElokuvat()) {
-            items.add(elokuva.tietojaElokuva());
-        }
 
         for (int i = 0; i < ElokuvaMain.kanta.getGenret().getLkm(); i++)  {
               items2.add(String.valueOf(ElokuvaMain.kanta.getGenret().getGenres().get(i).tietojaGenre()));
         }
+
+        String[] headings = {"Nimi","imdb","pituus","genre"};
+        grid.initTable(headings);
+        grid.setEditable(false);
+        //grid.setItems();
+        for (Elokuva elokuva : ElokuvaMain.kanta.getElokuvalista().getElokuvat()) {
+            grid.add(elokuva.getNimi(), elokuva.getImdb(), elokuva.getPituus(), ElokuvaMain.kanta.getGenret().Getgenrenamebyid(elokuva.getGenreID()));
+        }
+        ka.setText(ElokuvaMain.kanta.getElokuvalista().LaskeImdb());
     }
 
     /**
@@ -117,14 +123,14 @@ public class ElokuvaGUIController {
 
     @FXML
     private void lisaysleffa() {
-
-
         Elokuva hpuusi = new Elokuva("", "9.8", "1", "Toiminta", "1");
         hpuusi = ModalController.showModal(ElokuvalisaaController.class.getResource("Elokuvalisää.fxml"),
                 "Lisää elokuva", null,hpuusi );
 
         ElokuvaMain.kanta.getElokuvalista().lisaa(hpuusi);
         items.add(hpuusi.tietojaElokuva());
+        grid.add(hpuusi.getNimi(), hpuusi.getImdb(), hpuusi.getPituus(), ElokuvaMain.kanta.getGenret().Getgenrenamebyid(hpuusi.getGenreID()));
+        ka.setText(ElokuvaMain.kanta.getElokuvalista().LaskeImdb());
     }
 
     /**
@@ -145,48 +151,57 @@ public class ElokuvaGUIController {
 
     /**
      * @author teemuiljin
-     * Elokuvien poisto listasta
+     * Elokuvien poisto listasta voidaan valita tietty elokuva ja poistetaan tietty
+     * tyhjennetään sen jälkeen grid ja lisätään elokuvat silmukalla uudestaan taulukkoon
      */
     @FXML
     private void poistaElokuva() {
-        // Haetaan valittu elokuva listalta
-        String selectedElokuva = (String) elokuvatop.getSelectionModel().getSelectedItem();
-
-        // Käydään läpi elokuvat ja etsitään poistettava elokuva
-        for (Elokuva elokuva : ElokuvaMain.kanta.getElokuvalista().getElokuvat()) {
-            if (elokuva.tietojaElokuva().equals(selectedElokuva)) {
-                // Poistetaan elokuva listalta
-                ElokuvaMain.kanta.getElokuvalista().poista(elokuva);
-                items.remove(selectedElokuva);
-                break;
-            }
+        int valittuIndeksi = grid.getRowNr();
+        ElokuvaMain.kanta.getElokuvalista().getElokuvat().remove(valittuIndeksi);
+        grid.clear();
+        for (Elokuva elokuva2 : ElokuvaMain.kanta.getElokuvalista().getElokuvat()) {
+            grid.add(elokuva2.getNimi(), elokuva2.getImdb(), elokuva2.getPituus(), ElokuvaMain.kanta.getGenret().Getgenrenamebyid(elokuva2.getGenreID()));
         }
+        ka.setText(ElokuvaMain.kanta.getElokuvalista().LaskeImdb());
     }
 
     /**
      * @author teemuiljin
      * Elokuvien haku mahdollista
+     * tyhjentää taulukon, lukee ja lisää tilapäiseen listaan
      * (listan muokkaus)
      */
     @FXML
     private void haeElokuva() {
         String hakusana = hakukentta.getText().toLowerCase(); // Hae hakusana tekstikentästä
-        items.clear(); // Tyhjennä näytettävä lista
+        grid.clear(); // Tyhjennä näytettävä lista
 
         // Käyn läpi kaikki elokuvat ja lisään ne listaan, jos ne sisältävät hakusanan
         for (Elokuva elokuva : ElokuvaMain.kanta.getElokuvalista().getElokuvat()) {
             if (elokuva.tietojaElokuva().toLowerCase().contains(hakusana)) {
-                items.add(elokuva.tietojaElokuva());
+                grid.add(elokuva.getNimi(), elokuva.getImdb(), elokuva.getPituus(), ElokuvaMain.kanta.getGenret().Getgenrenamebyid(elokuva.getGenreID()));
+                //grid.add(elokuva.tietojaElokuva());
             }
         }
     }
+    /**
+     * @author teemuiljin
+     * Tyhjentää tilapäisen listan
+     */
     @FXML
     private void Tyhjenna() {
         hakukentta.clear();
         for (Elokuva elokuva : ElokuvaMain.kanta.getElokuvalista().getElokuvat()) {
-            items.add(elokuva.tietojaElokuva());
+            //grid.add(elokuva.tietojaElokuva());
+            grid.add(elokuva.getNimi(), elokuva.getImdb(), elokuva.getPituus(), ElokuvaMain.kanta.getGenret().Getgenrenamebyid(elokuva.getGenreID()));
         }
     }
+
+    /**
+     * @author teemuiljin
+     * Poistaa valitun genren listasta
+     */
+
     @FXML
     private void poistaGenre() {
 

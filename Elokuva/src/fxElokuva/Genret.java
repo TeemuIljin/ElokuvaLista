@@ -10,16 +10,31 @@ import java.util.Optional;
 
 
 /**
- * @author teemuiljin
- * Aivan identtinen kuin Elokuvat, mutta genreille
+ * @author teemuiljin Email: teemu.iljin@gmail.com
+ * Genret luokka, jossa genrejä luetaan, poistetaan, lisätään ja tallennettaan lista
+ * toimii halutulla tavalla
  */
 
 public class Genret {
+    /**
+     * @author teemuiljin
+     * alustan listan
+     */
     private List<Genre> genres = new ArrayList<>();
+
+    /**
+     * @author teemuiljin
+     * katsoo onko muutettu
+     */
 
     public boolean OnkoMuutettu() {
         return muutettu;
     }
+
+    /**
+     * @author teemuiljin
+     * muutetusta tulee true
+     */
 
     public void Muutettu() {
         muutettu = true;
@@ -31,12 +46,20 @@ public class Genret {
      */
     private boolean muutettu = false;
 
-
+    /**
+     * @author teemuiljin
+     * lisää genren ja muuttaa muutetun
+     */
 
     public void lisaa(Genre genre) {
         genres.add(genre);
         Muutettu();
     }
+    /**
+     * @author teemuiljin
+     * ottaa lukumäärän
+     */
+
     public int getLkm() {
         return genres.size();
     }
@@ -56,9 +79,19 @@ public class Genret {
     public Genret() {
     }
 
+    public String Getgenrenamebyid(int id) {
+        for (Genre genre : genres) {
+            if (genre.getUniikkiID() == id){
+                return genre.getGenrekuvaus();
+            }
+        }
+        return "not found";
+    }
+
     /**
      * @author teemuiljin
-     * pystytään tallentamaan tiedosto 31.3 /tallenna)
+     * pystytään tallentamaan tiedosto käyttäen dat ja bak filejä
+     * luodaan rivi riviltä ja lisätään tiedostoon
      */
 
     public void tallenna() throws SailoException {
@@ -88,7 +121,8 @@ public class Genret {
 
     /**
      * @author teemuiljin
-     * Luetiedostosta
+     * Luetiedostosta lukee tiedoston rivi riviltä
+     * sen jälkeen sulkee lukijan
      */
 
     public void lueTiedostosta() throws IOException, SailoException {
@@ -107,7 +141,7 @@ public class Genret {
 
     /**
      * @author teemuiljin
-     * poistaa listasta
+     * poistaa listasta genren ja muuttaa muutettu statuksen
      */
 
     public void poista(Genre genre) {

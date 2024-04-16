@@ -2,24 +2,40 @@ package fxElokuva;
 import fi.jyu.mit.ohj2.Mjonot;
 
 /**
- * @author teemuiljin
- * Genre java luokka, johon laitetaan tietoja genreistä, joka haetaan mainiin (alustan attribuutit)
+ * @author teemuiljin Email: teemu.iljin@gmail.com
+ * Genre java luokka, johon laitetaan tietoja genreistä, joka haetaan mainiin
  * TÄRKEÄNÄ GENRE-ID
  */
 public class Genre {
 
+    /**
+     * @author teemuiljin
+     * seuraavaID alustus
+     */
     private static int seuraavaID = 1;
-
+    /**
+     * @author teemuiljin
+     * uniikkiID alustus
+     */
     private int uniikkiID;
+
+    /**
+     * @author teemuiljin
+     * alustetaan genrenimi
+     */
 
     private String genrenimi;
 
+    /**
+     * @author teemuiljin
+     * alustetaan genrenkuvaus
+     */
     private String genrekuvaus;
 
 
     /**
      * @author teemuiljin
-     * tehdään genreistä uniikkeja 2 konstruktoria
+     * tehdään genreistä uniikkeja konstruktorien avulla
      */
 
     public Genre(String genrenimi, String genrekuvaus){
@@ -27,6 +43,10 @@ public class Genre {
         this.genrenimi = genrenimi;
         this.uniikkiID = seuraavaID++;
     }
+    /**
+     * @author teemuiljin
+     * tehdään genreistä uniikkeja konstruktorien avulla
+     */
     public Genre(String genrenimi, String genrekuvaus, int uniikkiID){
         this.genrekuvaus = genrekuvaus;
         this.genrenimi = genrenimi;
@@ -43,9 +63,8 @@ public class Genre {
 
     /**
      * @author teemuiljin
-     * parse korjattu genreille 31.3
+     * parse korjattu genreille pilkkoo genren tiedot ja palauttaa siististi
      */
-
 
     public static Genre parse(String data) {
         String[] parts = data.split("\\|");
@@ -62,7 +81,7 @@ public class Genre {
 
     /**
      * @author teemuiljin
-     * tostring tehty genreille
+     * tostring tehty genreille yhdistää tiedot hyvin
      */
     @Override
     public String toString() {
@@ -71,16 +90,24 @@ public class Genre {
 
     /**
      * @author teemuiljin
-     * getterit muualle
+     * getterit muualle genrenimi getteri
      */
     public String getGenrenimi() {
         return genrenimi;
     }
 
+    /**
+     * @author teemuiljin
+     * get uniikkiID testeille
+     */
     public int getUniikkiID() {
         return uniikkiID;
     }
 
+    /**
+     * @author teemuiljin
+     * get genrekuvaus testeille
+     */
     public String getGenrekuvaus() {
         return genrekuvaus;
     }

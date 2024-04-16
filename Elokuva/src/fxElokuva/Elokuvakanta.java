@@ -1,31 +1,40 @@
 package fxElokuva;
-
-//alertit yms
-
-//lista
-
 import java.io.IOException;
 
-//ohjelmat
-
-
+/**
+ * @author teemuiljin Email: teemu.iljin@gmail.com
+ * Elokuvakanta luokka, jonka avulla siirrytään luokasta toiseen
+ * getterien avulla
+ * (EI TARVITSE MAINIA)
+ */
 public class Elokuvakanta {
 
     /**
      * @author teemuiljin
-     * Alustukset listoille
+     * Alustukset listalle elokuvat
      */
     private Elokuvat elokuvalista = new Elokuvat();
+
+    /**
+     * @author teemuiljin
+     * Alustukset genreille
+     */
+
     private Genret genret = new Genret();
 
     /**
      * @author teemuiljin
-     * Getterit kaikelle
+     * Getteri kaikelle elokuvat
      */
     public Elokuvat getElokuvalista() {
         return elokuvalista;
 
     }
+    /**
+     * @author teemuiljin
+     * Getteri kaikelle genret
+     */
+
     public Genret getGenret() {
         return genret;
     }
@@ -50,7 +59,7 @@ public class Elokuvakanta {
 
     /**
      * @author teemuiljin
-     * Lukee elokuvat alempaata
+     * Lukee elokuvat alempaata luetiedostosta avulla
      */
 
 
@@ -59,7 +68,7 @@ public class Elokuvakanta {
     }
     /**
      * @author teemuiljin
-     * Lukee genret alempaata
+     * Lukee genret alemmasta luetiedoston avulla
      */
 
     public void LueGenret() throws SailoException, IOException {
@@ -68,10 +77,8 @@ public class Elokuvakanta {
 
     /**
      * @author teemuiljin
-     * Konstruktori
+     * Konstruktori elokuvakannalle
      */
 
-    Elokuvakanta() {
-
-    }
+    Elokuvakanta() {}
 }

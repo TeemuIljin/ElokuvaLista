@@ -3,7 +3,7 @@ package fxElokuva;
 import javafx.scene.Node;
 
 /**
- * @author teemuiljin
+ * @author teemuiljin Email: teemu.iljin@gmail.com
  * Elokuva luokka, jossa tietoja yksittäisestä elokuvasta
  * (EI TARVITSE MAINIA)
  */
@@ -17,13 +17,38 @@ public class Elokuva extends Node {
 
     private int uniikkiID;
 
+    /**
+     * @author teemuiljin
+     * nimen alustus
+     */
+
     private String nimi;
+
+    /**
+     * @author teemuiljin
+     * imdb alustus
+     */
 
     private String imdb;
 
+    /**
+     * @author teemuiljin
+     *pituus alustus
+     */
+
     private String pituus;
 
+    /**
+     * @author teemuiljin
+     * genre alustus
+     */
+
     private String genre;
+
+    /**
+     * @author teemuiljin
+     * konstruktori elokuvan tiedoille
+     */
 
     public Elokuva(String nimi, String imdb, String pituus, String genre, String id) {
         this.nimi = nimi;
@@ -42,7 +67,7 @@ public class Elokuva extends Node {
         return " Nimi: " + nimi +  ", imdb: " + imdb + ", Kesto: " + pituus + ", genre: " + genre + ", ID: " + uniikkiID;
     }
     /**
-     * Parse toimii oikein
+     * Parse toimii oikein ja pilkkoo tiedoston tekstin
      */
 
     public static Elokuva parse(String data) {
@@ -59,33 +84,71 @@ public class Elokuva extends Node {
         return new Elokuva(nimi, imdb, pituus, genreid, uniikkiID);
     }
     /**
-     * Tostring korjattu 2.4
+     * Tostring korjattu ja tulostettavan tiedon muoto
      */
     @Override
     public String toString() {
         return nimi + " | " + imdb + " | " + pituus + " | " + genre + " | " + uniikkiID ;
     }
 
+    /**
+     * @author teemuiljin
+     * testejä varten
+     */
+
     @Override
     public Node getStyleableNode() {
         return super.getStyleableNode();
     }
 
+    /**
+     * @author teemuiljin
+     * nimen getteri testejä varten
+     */
+
     public String getNimi() {
         return nimi;
     }
+
+    /**
+     * @author teemuiljin
+     * imdb getteri testejä varten
+     */
 
     public String getImdb() {
         return imdb;
     }
 
+    /**
+     * @author teemuiljin
+     * pituusgetteri testejä varten
+     */
+
     public String getPituus() {
         return pituus;
     }
 
+    /**
+     * @author teemuiljin
+     * genren getteri testejä varten
+     */
+
     public String getGenre() {
         return genre;
     }
+
+    /**
+     * @author teemuiljin
+     * genreID getteri joka muttaa tietotyypin lakskeimdb varten
+     */
+    public int getGenreID() {
+        return Integer.parseInt(genre);
+    }
+
+    /**
+     * @author teemuiljin
+     * uniikkiID getteri testejä varten
+     */
 
     public int getUniikkiID() {
         return uniikkiID;

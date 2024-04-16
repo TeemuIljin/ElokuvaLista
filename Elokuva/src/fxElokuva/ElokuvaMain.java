@@ -14,7 +14,7 @@ import fxElokuva.Elokuva;
  * @version 4.3.2024
  * Mainiin luodaan sisältöä
  * Esimerkiksi lista luodaan ja sen alkioksi asetetaan harri ja sen tietoja
- * Tiedostot luetaan muualla
+ * Tiedostot luetaan muualla ohjelmissa
  */
 public class ElokuvaMain extends Application {
     static Elokuvakanta kanta = new Elokuvakanta();

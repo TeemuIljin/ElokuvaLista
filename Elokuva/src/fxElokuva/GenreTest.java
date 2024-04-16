@@ -4,7 +4,17 @@ import fxElokuva.Genre;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author teemuiljin Email: teemu.iljin@gmail.com
+ * Genretest luokka, jossa testataan genrejen toimintaa, parsea ja tulostusta yms.
+ * ei puutu mitään
+ */
 class GenreTest {
+
+    /**
+     * @author teemuiljin
+     * testaan tietojagenreä ja sen tulostuksen oikeellisuutta
+     */
 
     @Test
     void testTietojaGenre() {
@@ -12,6 +22,12 @@ class GenreTest {
         String expected = " Tiedot: Tämä on draaman kuvaus, Genre: Draama, Genren ID: 1";
         assertEquals(expected, genre.tietojaGenre());
     }
+
+    /**
+     * @author teemuiljin
+     * testaan parsea ja tulostuksen toimintaa
+     * odotan arvoa ja saan odotetun arvon
+     */
     @Test
     void testParse() {
         String data = "Toiminta|Toimintaelokuvien kuvaus|2";
@@ -21,6 +37,11 @@ class GenreTest {
         assertEquals(2, parsedGenre.getUniikkiID());
     }
 
+    /**
+     * @author teemuiljin
+     * Testaan tostringin toimivuutta ja varmistan, että se toimii halutulla tavalla
+     * kaikki eroteltuina omissa lokeroissa
+     */
     @Test
     void testToString() {
         Genre genre = new Genre("Komedia", "Tämä on komedian kuvaus", 3);
