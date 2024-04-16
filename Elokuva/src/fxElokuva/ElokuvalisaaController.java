@@ -48,7 +48,7 @@ public class ElokuvalisaaController implements ModalControllerInterface<Elokuva>
      */
 
     public Elokuva getResult() {
-        int guid = ElokuvaMain.kanta.getElokuvalista().getElokuvat().size() + 1;
+        int guid = ElokuvaMain.kanta.getElokuvalista().GetLkm() + 1;
         Genre genre1 = genre.getSelectionModel().getSelectedItem();
         String genreID = Integer.toString(genre1.getUniikkiID());
         return new Elokuva(nimi.getText(), imdb.getText(), pituus.getText(), genreID, Integer.toString(guid));

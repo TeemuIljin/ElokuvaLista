@@ -9,7 +9,8 @@ import java.util.*;
  * (EI TARVITA MAINIA)
  */
 
-public class Elokuvat {
+public class Elokuvat implements Iterable<Elokuva>{
+
 
 
         /**
@@ -17,12 +18,17 @@ public class Elokuvat {
          * alustetaan elokuvalista
          * tehdään lkm jolloin lista dynaamisempi ja ei tarvitse foria
          */
-        private List<Elokuva> elokuvat = new ArrayList<Elokuva>();
+        //private List<Elokuva> elokuvat = new ArrayList<Elokuva>();
+
+        private Elokuva[] elokuvat = new Elokuva[10];
+
+
 
         /**
          * @author teemuiljin
          * muutettu on alussa false kunnes laitamme sen olemaan true tallennusta varten yms.
          */
+
         private boolean muutettu = false;
         private int lkm = 0;
 
@@ -44,8 +50,9 @@ public class Elokuvat {
           * @author teemuiljin
           * getlkm tekee uniikin lkm jota tarkkaillaan
           */
+
         public int GetLkm () {
-           return elokuvat.size();
+           return lkm;
         }
 
         /**
@@ -60,9 +67,17 @@ public class Elokuvat {
         /**
          * @author teemuiljin
         * lisää elokuvan listaan ja tekee muutoksen muutettu statukseen
+         * manuaalisesti
         */
         public void lisaa(Elokuva elokuva){
-            elokuvat.add(elokuva);
+            if (lkm >= elokuvat.length) {
+                Elokuva[] taulukko = new Elokuva[elokuvat.length+10];
+                for (int i = 0; i < elokuvat.length;i++) {
+                    taulukko[i] = elokuvat[i];
+                }
+                elokuvat = taulukko;
+            }
+            elokuvat[lkm] = elokuva;
             Muutettu();
             lkm++;
         }
@@ -73,7 +88,7 @@ public class Elokuvat {
          * listan getteri alempana
          */
 
-        public List<Elokuva> getElokuvat() {
+        public Elokuva[] getElokuvat() {
             return elokuvat;
         }
 
@@ -118,7 +133,10 @@ public class Elokuvat {
             ftied.renameTo(fbak); // if .. System.err.println("Ei voi nimetä");
             try ( PrintWriter fo = new PrintWriter(new FileWriter(ftied.getCanonicalPath())) ) {
                 for (Elokuva elokuva : elokuvat) {
-                    fo.println(elokuva.toString());
+                    //fo.println(elokuva.toString());
+                    if (elokuva != null) { // Null check lisätty
+                        fo.println(elokuva.toString());
+                    }
                 }
             } catch ( FileNotFoundException ex ) {
                 throw new SailoException("Tiedosto " + ftied.getName() + " ei aukea");
@@ -130,25 +148,58 @@ public class Elokuvat {
 
     /**
      * @author teemuiljin
-     * Poistaa elokuvan listasta ja pienentää lkm sekä kutsuu muutettua
+     * etsii id:n ja palauttaa sen
+     * failsafe tehty siihen
+     */
+
+        public int etsiId(Elokuva elokuva) {
+            for (int i = 0; i < elokuvat.length; i++){
+                if (elokuva.getUniikkiID() == elokuvat[i].getUniikkiID()){
+                    return elokuva.getUniikkiID();
+                }
+            }
+            return -1;
+        }
+
+    /**
+     * @author teemuiljin
+     * Poistaa elokuvan listasta
+     * kutsumalla etsiID
      */
     public void poista(Elokuva elokuva) {
-        elokuvat.remove(elokuva);
-        lkm--;
-        Muutettu();
+        int poistaID = etsiId(elokuva);
+        poista(poistaID);
     }
 
     /**
      * @author teemuiljin
-     * Laskee kaikkien elokuvien imdb keskiarvon ja toimii dynaamisesti
-     * palauttaa keskiarvon textfieldiin
+     * poistaa silmukalla ja muuttaa lkm tarvittaessa
      */
+    public void poista(int id) {
+        if (id == -1 || id >= elokuvat.length) {
+            return;
+        }
+        for (int i = id; i < elokuvat.length - 1; i++) {
+            elokuvat[i] = elokuvat[i+1];
+        }
+        elokuvat[elokuvat.length - 1] = null; // Clearing the last element
+        lkm--;
+        Muutettu();
+    }
+
+
+
+    /**
+         * @author teemuiljin
+         * Laskee kaikkien elokuvien imdb keskiarvon ja toimii dynaamisesti
+         * palauttaa keskiarvon textfieldiin
+         */
 
     public String LaskeImdb() {
         double summa = 0;
         double keskiarvo = 0;
         String returnvalue;
-        for (Elokuva elokuva : elokuvat) {
+        for (Elokuva elokuva : this) {
             String imdb = elokuva.getImdb();
             double imdb_double = Double.parseDouble(imdb);
             summa += imdb_double;
@@ -159,6 +210,56 @@ public class Elokuvat {
         returnvalue = String.format("%.1f", keskiarvo);
         return returnvalue;
     }
+
+    /**
+     * @author teemuiljin
+     * iteraattorin konstruktori
+     * jotta voimme käyttää
+     */
+
+    public Iterator<Elokuva> iterator() {
+        return new ElokuvaIterator();
+    }
+
+    /**
+     * @author teemuiljin
+     * Iterator luokka jonka avulla luetaan tiedosto
+     */
+
+    public class ElokuvaIterator implements Iterator<Elokuva>{
+
+
+        /**
+         * @author teemuiljin
+         * kohdalla seuraa listan kokoa ja kasvaa
+         */
+        private int kohdalla = 0;
+
+        /**
+         * @author teemuiljin
+         * kohdalla seurataan kunnes ei ole enää elokuvia
+         */
+        @Override
+        public boolean hasNext() {
+            if (kohdalla < GetLkm()) {
+                return true;
+            }
+            return false;
+        }
+
+        /**
+         * @author teemuiljin
+         * elokuvien lukeminen omiin kenttiin
+         */
+        @Override
+        public Elokuva next() {
+            if (hasNext()){
+                return elokuvat[kohdalla++];
+            }
+            throw new NoSuchElementException("Ei ole");
+        }
+    }
+
 }
 
 

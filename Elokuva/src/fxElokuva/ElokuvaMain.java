@@ -10,8 +10,8 @@ import javafx.fxml.FXMLLoader;
 import fxElokuva.Elokuva;
 
 /**
- * @author teemuiljin
- * @version 4.3.2024
+ * @author teemuiljin Email: teemu.iljin@gmail.com
+ * @version 16.4
  * Mainiin luodaan sisältöä
  * Esimerkiksi lista luodaan ja sen alkioksi asetetaan harri ja sen tietoja
  * Tiedostot luetaan muualla ohjelmissa

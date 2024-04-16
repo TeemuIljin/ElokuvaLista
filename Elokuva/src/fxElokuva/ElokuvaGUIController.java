@@ -76,7 +76,7 @@ public class ElokuvaGUIController {
         grid.initTable(headings);
         grid.setEditable(false);
         //grid.setItems();
-        for (Elokuva elokuva : ElokuvaMain.kanta.getElokuvalista().getElokuvat()) {
+        for (Elokuva elokuva : ElokuvaMain.kanta.getElokuvalista()) {
             grid.add(elokuva.getNimi(), elokuva.getImdb(), elokuva.getPituus(), ElokuvaMain.kanta.getGenret().Getgenrenamebyid(elokuva.getGenreID()));
         }
         ka.setText(ElokuvaMain.kanta.getElokuvalista().LaskeImdb());
@@ -157,9 +157,9 @@ public class ElokuvaGUIController {
     @FXML
     private void poistaElokuva() {
         int valittuIndeksi = grid.getRowNr();
-        ElokuvaMain.kanta.getElokuvalista().getElokuvat().remove(valittuIndeksi);
+        ElokuvaMain.kanta.getElokuvalista().poista(valittuIndeksi);
         grid.clear();
-        for (Elokuva elokuva2 : ElokuvaMain.kanta.getElokuvalista().getElokuvat()) {
+        for (Elokuva elokuva2 : ElokuvaMain.kanta.getElokuvalista()) {
             grid.add(elokuva2.getNimi(), elokuva2.getImdb(), elokuva2.getPituus(), ElokuvaMain.kanta.getGenret().Getgenrenamebyid(elokuva2.getGenreID()));
         }
         ka.setText(ElokuvaMain.kanta.getElokuvalista().LaskeImdb());
@@ -177,7 +177,7 @@ public class ElokuvaGUIController {
         grid.clear(); // Tyhjennä näytettävä lista
 
         // Käyn läpi kaikki elokuvat ja lisään ne listaan, jos ne sisältävät hakusanan
-        for (Elokuva elokuva : ElokuvaMain.kanta.getElokuvalista().getElokuvat()) {
+        for (Elokuva elokuva : ElokuvaMain.kanta.getElokuvalista()) {
             if (elokuva.tietojaElokuva().toLowerCase().contains(hakusana)) {
                 grid.add(elokuva.getNimi(), elokuva.getImdb(), elokuva.getPituus(), ElokuvaMain.kanta.getGenret().Getgenrenamebyid(elokuva.getGenreID()));
                 //grid.add(elokuva.tietojaElokuva());
@@ -191,7 +191,7 @@ public class ElokuvaGUIController {
     @FXML
     private void Tyhjenna() {
         hakukentta.clear();
-        for (Elokuva elokuva : ElokuvaMain.kanta.getElokuvalista().getElokuvat()) {
+        for (Elokuva elokuva : ElokuvaMain.kanta.getElokuvalista()) {
             //grid.add(elokuva.tietojaElokuva());
             grid.add(elokuva.getNimi(), elokuva.getImdb(), elokuva.getPituus(), ElokuvaMain.kanta.getGenret().Getgenrenamebyid(elokuva.getGenreID()));
         }
@@ -199,7 +199,8 @@ public class ElokuvaGUIController {
 
     /**
      * @author teemuiljin
-     * Poistaa valitun genren listasta
+     * Poistaa valitun genren listasta oikealla tavalla
+     * poistaa valitun genren
      */
 
     @FXML
