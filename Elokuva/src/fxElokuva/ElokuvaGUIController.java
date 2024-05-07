@@ -147,6 +147,7 @@ public class ElokuvaGUIController {
 
         ElokuvaMain.kanta.getGenret().lisaa(hpuusi2);
         items2.add(hpuusi2.tietojaGenre());
+        //lisää genren listaan helpolla tavalla
     }
 
     /**
