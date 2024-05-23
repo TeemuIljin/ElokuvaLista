@@ -1,6 +1,1 @@
-# pohja
-
-Pohja kevään 2024 harjoitustöiden GIT-repoille
-
-Lue käyttöohjeet TIMistä: <https://tim.jyu.fi/view/kurssit/tie/ohj2/tyokalut/git/ohj2git#fork>
-
+Rakensin dynaamisen elokuvalistan jossa käyttäjä voi lisätä, poistaa ja hakea elokuvia. Pohjautuu dynaamiseen tietokantaan ja on rakennettu täysin itse nollasta ohjelmointi 2 kurssia varten. Sain tämän työn ansiosta kurssista 5/5!
