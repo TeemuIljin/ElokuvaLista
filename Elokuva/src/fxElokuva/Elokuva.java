@@ -6,6 +6,7 @@ import javafx.scene.Node;
  * @author teemuiljin Email: teemu.iljin@gmail.com
  * Elokuva luokka, jossa tietoja yksittäisestä elokuvasta
  * (EI TARVITSE MAINIA)
+ * Tarkistettu 11.11 toiminnallisesti ja hyvältä näyttää
  */
 
 public class Elokuva extends Node {
