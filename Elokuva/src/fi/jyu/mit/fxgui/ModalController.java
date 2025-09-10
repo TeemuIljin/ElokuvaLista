@@ -28,14 +28,18 @@ public class ModalController {
             // Try to get controller and set default
             Object controller = loader.getController();
             if (controller instanceof ModalControllerInterface) {
-                ((ModalControllerInterface<T>) controller).setDefault(defaultResult);
+                @SuppressWarnings("unchecked")
+                ModalControllerInterface<T> typedController = (ModalControllerInterface<T>) controller;
+                typedController.setDefault(defaultResult);
             }
             
             stage.showAndWait();
             
             // Try to get result from controller
             if (controller instanceof ModalControllerInterface) {
-                return ((ModalControllerInterface<T>) controller).getResult();
+                @SuppressWarnings("unchecked")
+                ModalControllerInterface<T> typedController = (ModalControllerInterface<T>) controller;
+                return typedController.getResult();
             }
             
             return defaultResult;

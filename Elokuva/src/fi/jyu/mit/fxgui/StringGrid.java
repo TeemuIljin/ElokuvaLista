@@ -47,7 +47,9 @@ public class StringGrid<T> extends TableView<T> {
         
         // Create a simple data object to hold the values
         GridRow row = new GridRow(values);
-        data.add((T) row);
+        @SuppressWarnings("unchecked")
+        T typedRow = (T) row;
+        data.add(typedRow);
     }
     
     /**

@@ -3,19 +3,25 @@ package fxElokuva;
 import javafx.scene.Node;
 
 /**
+ * Elokuva luokka, jossa tietoja yksittäisestä elokuvasta.
+ * 
+ * <p>Luokka sisältää elokuvan perustiedot kuten nimen, IMDB-arvon, 
+ * pituuden ja genren. Tarjoaa metodit tiedon käsittelyyn ja 
+ * tallentamiseen.</p>
+ * 
  * @author teemuiljin Email: teemu.iljin@gmail.com
- * Elokuva luokka, jossa tietoja yksittäisestä elokuvasta
- * (EI TARVITSE MAINIA)
- * Tarkistettu 11.11 toiminnallisesti ja hyvältä näyttää
+ * @version 2.0
+ * @since 1.0
  */
 
 public class Elokuva extends Node {
 
-    /**
-     * @author teemuiljin
-     * Ensin alustetaan tiedot elokuville (attribuutit)
-     */
-
+    // Constants
+    private static final String DEFAULT_IMDB = "0.0";
+    private static final String DEFAULT_DURATION = "0min";
+    private static final String DEFAULT_GENRE = "Unknown";
+    
+    // Instance variables
     private int uniikkiID;
 
     /**
@@ -47,15 +53,20 @@ public class Elokuva extends Node {
     private String genre;
 
     /**
-     * @author teemuiljin
-     * konstruktori elokuvan tiedoille
+     * Konstruktori elokuvan tiedoille.
+     * 
+     * @param nimi elokuvan nimi
+     * @param imdb IMDB-arvo merkkijonona
+     * @param pituus elokuvan pituus
+     * @param genre genren ID merkkijonona
+     * @param id uniikki tunniste merkkijonona
+     * @throws NumberFormatException jos id ei ole kelvollinen numero
      */
-
     public Elokuva(String nimi, String imdb, String pituus, String genre, String id) {
-        this.nimi = nimi;
-        this.genre = genre;
-        this.imdb = imdb;
-        this.pituus = pituus;
+        this.nimi = (nimi != null && !nimi.trim().isEmpty()) ? nimi.trim() : "Unknown";
+        this.imdb = (imdb != null && !imdb.trim().isEmpty()) ? imdb.trim() : DEFAULT_IMDB;
+        this.pituus = (pituus != null && !pituus.trim().isEmpty()) ? pituus.trim() : DEFAULT_DURATION;
+        this.genre = (genre != null && !genre.trim().isEmpty()) ? genre.trim() : DEFAULT_GENRE;
         this.uniikkiID = Integer.parseInt(id);
     }
 
