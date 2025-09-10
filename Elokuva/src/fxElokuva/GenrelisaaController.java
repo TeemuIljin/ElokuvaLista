@@ -1,17 +1,15 @@
 package fxElokuva;
 
-import fi.jyu.mit.fxgui.ModalControllerInterface;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import fi.jyu.mit.fxgui.*;
 
 /**
  * @author teemuiljin Email: teemu.iljin@gmail.com
  * GenrelisääController luokka, jonka avulla avataan uusi fxml genren lisäyksiä varten
  * kaikki tarvittava kysytään käyttäjältä ja kaikki ominaisuudet löytyvät esim failsafe ja näytävirheilmoitus
  */
-public class GenrelisaaController implements ModalControllerInterface<Genre>{
+public class GenrelisaaController {
 
     /**
      * @author teemuiljin
@@ -24,7 +22,6 @@ public class GenrelisaaController implements ModalControllerInterface<Genre>{
      * @author teemuiljin
      * palautan tiedot genreille
      */
-    @Override
     public Genre getResult() {
         int guid = ElokuvaMain.kanta.getGenret().getGenres().size() + 1;
         return new Genre(genrenimi.getText(), genrekuvaus.getText(), guid);
@@ -34,7 +31,6 @@ public class GenrelisaaController implements ModalControllerInterface<Genre>{
      * @author teemuiljin
      * pakollinen setdefault
      */
-    @Override
     public void setDefault(Genre genre) {
     }
 
@@ -42,7 +38,6 @@ public class GenrelisaaController implements ModalControllerInterface<Genre>{
      * @author teemuiljin
      * pakollinen handleshown
      */
-    @Override
     public void handleShown() {
     }
 
@@ -52,7 +47,7 @@ public class GenrelisaaController implements ModalControllerInterface<Genre>{
      */
     public void luoGenre(){
         if (isValidInput()) {
-            ModalController.closeStage(genrekuvaus);
+            ((javafx.stage.Stage) genrekuvaus.getScene().getWindow()).close();
         } else {
             näytäVirheilmoitus("Virheelliset tiedot", "Syötä oikeanlaiset tiedot ennen genren lisäämistä.");
         }
