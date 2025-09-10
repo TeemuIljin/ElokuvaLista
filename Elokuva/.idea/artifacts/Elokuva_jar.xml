@@ -1,0 +1,19 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Elokuva:jar">
+    <output-path>$PROJECT_DIR$/..</output-path>
+    <root id="archive" name="Elokuva.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/../META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="Elokuva" />
+      <element id="extracted-dir" path="$USER_HOME$/devel/jar/Music.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/devel/jar/fxgui.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/devel/jar/Ali.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/devel/jar/Graphics.jar" path-in-jar="/" />
+      <element id="directory" name="Tiedostot">
+        <element id="file-copy" path="$PROJECT_DIR$/Tiedostot/Elokuvat.dat" />
+        <element id="file-copy" path="$PROJECT_DIR$/Tiedostot/Genret.dat" />
+      </element>
+    </root>
+  </artifact>
+</component>

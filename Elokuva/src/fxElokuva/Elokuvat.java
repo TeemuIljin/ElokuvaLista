@@ -32,6 +32,17 @@ public class Elokuvat implements Iterable<Elokuva>{
         private boolean muutettu = false;
         private int lkm = 0;
 
+        private static final String DATA_DIR = "Tiedostot";
+        private static final String DATA_FILE = DATA_DIR + "/Elokuvat.dat";
+        private static final String BAK_FILE = DATA_DIR + "/Elokuvat.bak";
+
+        private static void ensureDataDirectoryExists() {
+            File dir = new File(DATA_DIR);
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+        }
+
         /**
          * @author teemuiljin
          * lisää halutun elokuvan listaan ja kasvattaa lkm yhdellä eli ei päällekkäin.
@@ -107,15 +118,16 @@ public class Elokuvat implements Iterable<Elokuva>{
          */
 
         public void lueTiedostosta() throws IOException, SailoException {
-
-            BufferedReader reader = new BufferedReader(new FileReader("Tiedostot/Elokuvat.dat"));
-            String line;
-
-            while ((line = reader.readLine()) != null) {
-                Elokuva elokuva = Elokuva.parse(line);
-                lisaa(elokuva);
+            ensureDataDirectoryExists();
+            File file = new File(DATA_FILE);
+            if (!file.exists()) return;
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    Elokuva elokuva = Elokuva.parse(line);
+                    lisaa(elokuva);
+                }
             }
-            reader.close();
             return;
         }
 
@@ -127,14 +139,14 @@ public class Elokuvat implements Iterable<Elokuva>{
 
         public void tallenna() throws SailoException {
             if ( !OnkoMuutettu() ) return;
-            File fbak = new File("Tiedostot/Elokuvat.bak");
-            File ftied = new File("Tiedostot/Elokuvat.dat");
+            ensureDataDirectoryExists();
+            File fbak = new File(BAK_FILE);
+            File ftied = new File(DATA_FILE);
             fbak.delete(); // if .. System.err.println("Ei voi tuhota");
             ftied.renameTo(fbak); // if .. System.err.println("Ei voi nimetä");
             try ( PrintWriter fo = new PrintWriter(new FileWriter(ftied.getCanonicalPath())) ) {
                 for (Elokuva elokuva : elokuvat) {
-                    //fo.println(elokuva.toString());
-                    if (elokuva != null) { // Null check lisätty
+                    if (elokuva != null) {
                         fo.println(elokuva.toString());
                     }
                 }
@@ -143,7 +155,7 @@ public class Elokuvat implements Iterable<Elokuva>{
             } catch ( IOException ex ) {
                 throw new SailoException("Tiedoston " + ftied.getName() + " kirjoittamisessa ongelmia");
             }
-            Muutettu();
+            muutettu = false;
         }
 
     /**
@@ -154,7 +166,7 @@ public class Elokuvat implements Iterable<Elokuva>{
 
         public int etsiId(Elokuva elokuva) {
             for (int i = 0; i < elokuvat.length; i++){
-                if (elokuva.getUniikkiID() == elokuvat[i].getUniikkiID()){
+                if (elokuvat[i] != null && elokuva.getUniikkiID() == elokuvat[i].getUniikkiID()){
                     return elokuva.getUniikkiID();
                 }
             }

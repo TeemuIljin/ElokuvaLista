@@ -94,7 +94,7 @@ public class Elokuva extends Node {
 
     /**
      * @author teemuiljin
-     * testejä varten
+     * testejä varten (toimivat )
      */
 
     @Override

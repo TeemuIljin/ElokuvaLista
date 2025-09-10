@@ -3,10 +3,8 @@ package fxElokuva;
 import fxElokuva.Genre;
 
 import java.io.*;
-import java.util.Optional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 
 /**
@@ -96,6 +94,8 @@ public class Genret {
 
     public void tallenna() throws SailoException {
         if ( !OnkoMuutettu() ) return;
+        File dataDir = new File("Tiedostot");
+        if (!dataDir.exists()) dataDir.mkdirs();
 
         File fbak = new File("Tiedostot/Genret.bak");
         File ftied = new File("Tiedostot/Genret.dat");
@@ -103,19 +103,16 @@ public class Genret {
         ftied.renameTo(fbak); // if .. System.err.println("Ei voi nimetä");
 
         try ( PrintWriter fo = new PrintWriter(new FileWriter(ftied.getCanonicalPath())) ) {
-
             for (Genre genre : genres) {
                 fo.println(genre.toString());
             }
-            //} catch ( IOException e ) { // ei heitä poikkeusta
-            //  throw new SailoException("Tallettamisessa ongelmia: " + e.getMessage());
         } catch ( FileNotFoundException ex ) {
             throw new SailoException("Tiedosto " + ftied.getName() + " ei aukea");
         } catch ( IOException ex ) {
             throw new SailoException("Tiedoston " + ftied.getName() + " kirjoittamisessa ongelmia");
         }
 
-        Muutettu();
+        muutettu = false;
     }
 
 
@@ -126,16 +123,15 @@ public class Genret {
      */
 
     public void lueTiedostosta() throws IOException, SailoException {
-
-        BufferedReader reader = new BufferedReader(new FileReader("Tiedostot/Genret.dat"));
-        String line;
-
-
-        while ((line = reader.readLine()) != null) {
-            Genre genre = Genre.parse(line);
-            lisaa(genre);
+        File file = new File("Tiedostot/Genret.dat");
+        if (!file.exists()) return;
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                Genre genre = Genre.parse(line);
+                lisaa(genre);
+            }
         }
-        reader.close();
         return;
     }
 
