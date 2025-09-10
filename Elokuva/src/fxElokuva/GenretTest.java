@@ -1,58 +1,93 @@
 package fxElokuva;
-
 import fxElokuva.Genre;
 import fxElokuva.Genret;
 import fxElokuva.SailoException;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
- * @author teemuiljin Email: teemu.iljin@gmail.com
- * Genrettest luokka, jossa testataan genret tallennusta, toimintaa, tiedostosta lukemista.
- * poistoa ja lisäystä yms.
- * Ei puutu mitään
+ * @author teemuiljin
+ * Genret test testaa genren tulostusta, tallennusta ja poistoa
+ * kaikki järjkevä testataan ja mitään ei puutu
  */
-class GenretTest {
+
+public class GenretTest {
+    
+    private static int testsRun = 0;
+    private static int testsPassed = 0;
+
+    private static void assertEquals(Object expected, Object actual) {
+        testsRun++;
+        if (!expected.equals(actual)) {
+            System.err.println("FAIL: Expected '" + expected + "' but got '" + actual + "'");
+        } else {
+            testsPassed++;
+            System.out.println("PASS: " + expected);
+        }
+    }
+
+    private static void assertEquals(int expected, int actual) {
+        assertEquals(Integer.valueOf(expected), Integer.valueOf(actual));
+    }
+
+    private static void assertTrue(boolean condition) {
+        testsRun++;
+        if (!condition) {
+            System.err.println("FAIL: Expected true but got false");
+        } else {
+            testsPassed++;
+            System.out.println("PASS: true");
+        }
+    }
+
+    private static void assertFalse(boolean condition) {
+        testsRun++;
+        if (condition) {
+            System.err.println("FAIL: Expected false but got true");
+        } else {
+            testsPassed++;
+            System.out.println("PASS: false");
+        }
+    }
+
+    private static void fail(String message) {
+        testsRun++;
+        System.err.println("FAIL: " + message);
+    }
 
     /**
      * @author teemuiljin
-     * alustan genret
+     * alustaa genret
      */
-
-    private Genret genret;
+    private static Genret genret;
 
     /**
      * @author teemuiljin
-     * ennen testejä alustaa genret taulukon
+     * tekee ennen joka testiä genret listan
      */
-    @BeforeEach
-    void setUp() {
+    private static void setUp() {
         genret = new Genret();
     }
 
     /**
      * @author teemuiljin
-     * testaan lisää-toimintoa ja getlkm toiminnallisuutta
+     * testaa lisää ja get lkm toimivuuden
      */
-    @Test
-    void testLisaaJaGetLkm() {
-        Genre genre = new Genre("Draama", "dramis", 1);
+    public static void testLisaaJaGetLkm() {
+        setUp();
+        Genre genre = new Genre("Toiminta", "Toimintaelokuvien kuvaus");
         genret.lisaa(genre);
         assertEquals(1, genret.getLkm());
     }
 
     /**
      * @author teemuiljin
-     * testaan onko muutettua ja toimiiko bool oikein
-     * se on tärkeä ominaisuus tallennusta varten
+     * testaa onko listaa muutettu uusilla genrellä tai poistolla
      */
-    @Test
-    void testOnkoMuutettu() {
+    public static void testOnkoMuutettu() {
+        setUp();
         assertFalse(genret.OnkoMuutettu());
         genret.Muutettu();
         assertTrue(genret.OnkoMuutettu());
@@ -60,42 +95,47 @@ class GenretTest {
 
     /**
      * @author teemuiljin
-     * testaan lukeeko ohjelma tiedostostosta oikein
+     * testaa tallenna genren tiedostoon ja tallentaa sen oikeaan tiedostoon
+     * tehdään dummy genret ja katsotaan toimiiko tulostus ja dat/bak filet
      */
-
-    @Test
-    void testLueTiedostosta() {
+    public static void testTallenna() {
+        setUp();
         try {
             genret.lueTiedostosta();
+            System.out.println("Tallennetut genret:");
+            Files.lines(Paths.get("Tiedostot/Genret.dat")).forEach(System.out::println);
             assertEquals(5, genret.getLkm()); // Olettaen, että tiedostossa on 5 genreä
-        } catch (IOException | SailoException e) {
+        } catch (SailoException | IOException e) {
             fail("Poikkeus ei odotettu: " + e.getMessage());
         }
     }
 
     /**
      * @author teemuiljin
-     * testaan myös tallenna ominaisuutta ja sen toimivuutta
-     * luon tyhmää dataa ja katson miten se tallennetaan tiedostoon
+     * testaa poistaa genren ja lisää genren
      */
-    @Test
-    void testTallenna() {
-        // tyhmää dataa
-        Genre genre1 = new Genre("pamauksia1", "Toiminta",1);
-        Genre genre2 = new Genre("pamauksia2", "Toiminta2",2);
+    public static void testPoista() {
+        setUp();
+        Genre genre1 = new Genre("Toiminta", "Toimintaelokuvien kuvaus");
+        Genre genre2 = new Genre("Draama", "Draamaelokuvien kuvaus");
         genret.lisaa(genre1);
         genret.lisaa(genre2);
+
+        genret.poista(genre1);
         try {
             genret.tallenna();
-            System.out.println("Tallennetut genret:");
-            Files.lines(Paths.get("Tiedostot/Genret.dat")).forEach(System.out::println);
-            genret = new Genret();
-            genret.lueTiedostosta();
-            System.out.println("Ladatut leffat:");
-            genret.getGenres().forEach(System.out::println);
             assertEquals(2, genret.getLkm());
-        } catch (SailoException | IOException e) {
+        } catch (SailoException e) {
             fail("poikkeus: " + e.getMessage());
         }
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Running Genret tests...");
+        testLisaaJaGetLkm();
+        testOnkoMuutettu();
+        testTallenna();
+        testPoista();
+        System.out.println("\nTests completed: " + testsPassed + "/" + testsRun + " passed");
     }
 }

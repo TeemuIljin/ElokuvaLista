@@ -1,5 +1,6 @@
 package fxElokuva;
 
+import fi.jyu.mit.fxgui.ModalControllerInterface;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -9,7 +10,7 @@ import javafx.scene.control.TextField;
  * GenrelisääController luokka, jonka avulla avataan uusi fxml genren lisäyksiä varten
  * kaikki tarvittava kysytään käyttäjältä ja kaikki ominaisuudet löytyvät esim failsafe ja näytävirheilmoitus
  */
-public class GenrelisaaController {
+public class GenrelisaaController implements ModalControllerInterface<Genre> {
 
     /**
      * @author teemuiljin

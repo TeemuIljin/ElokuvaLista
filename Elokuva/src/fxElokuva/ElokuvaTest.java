@@ -1,7 +1,5 @@
 package fxElokuva;
 
-import fxElokuva.Elokuva;
-
 /**
  * @author teemuiljin Email: teemu.iljin@gmail.com
  * Elokuvatest luokka, testata elokuvien ominaisuuksia

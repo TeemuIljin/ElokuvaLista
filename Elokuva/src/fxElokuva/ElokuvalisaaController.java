@@ -1,5 +1,6 @@
 package fxElokuva;
 
+import fi.jyu.mit.fxgui.ModalControllerInterface;
 import fxElokuva.Elokuva;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,7 +15,7 @@ import fxElokuva.Genre;
  * ElokuvalisääController luokka, jossa elokuvalisäyksen tapahtuma suoritetaan uudessa fxml tiedostossa
  * yksi kolmesta controllerista
  */
-public class ElokuvalisaaController {
+public class ElokuvalisaaController implements ModalControllerInterface<Elokuva> {
 
     /**
      * @author teemuiljin

@@ -7,7 +7,6 @@ import javafx.scene.layout.Pane;
 import javafx.fxml.FXMLLoader;
 
 //elokuva
-import fxElokuva.Elokuva;
 
 /**
  * @author teemuiljin Email: teemu.iljin@gmail.com
