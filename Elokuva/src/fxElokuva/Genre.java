@@ -1,5 +1,4 @@
 package fxElokuva;
-import fi.jyu.mit.ohj2.Mjonot;
 
 /**
  * @author teemuiljin Email: teemu.iljin@gmail.com
